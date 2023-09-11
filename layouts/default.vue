@@ -39,7 +39,7 @@ export default {
 .main {
   background-color: #F8F8F8;
 }
-.main_content {
+/* .main_content {
   padding: 90px 0;
-}
+} */
 </style>
