@@ -11,6 +11,9 @@
       </div>
     </div>
     <PriceFilter />
+    <div class="body_ctn">
+      <RecentlyUpdated />
+    </div>
   </div>
 </template>
 
@@ -21,8 +24,8 @@ export default {
 </script>
 
 <style scoped>
-.main_ctn {
-}
+/* .main_ctn {
+} */
 .hero_ctn {
   background-image: url('assets/images/hero-1.jpg');
   background-size: cover;
@@ -46,6 +49,12 @@ export default {
 
 .search_input input {
   width: 100%;
+}
+
+.body_ctn {
+  max-width: 1344px;
+  width: 80%;
+  margin: auto;
 }
 
 @media only screen and (max-width: 1200px) {
