@@ -40,7 +40,9 @@
           <p class="rhs_text">
             Est. Average Price
           </p>
-          <h2 class="price">N12,450,000</h2>
+          <h2 class="price">
+            N12,450,000
+          </h2>
           <button class="global_btn">
             Search for Cars
           </button>
