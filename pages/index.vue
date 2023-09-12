@@ -13,6 +13,7 @@
     <PriceFilter />
     <div class="body_ctn">
       <RecentlyUpdated />
+      <CompareOptions />
     </div>
   </div>
 </template>
