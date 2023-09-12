@@ -62,6 +62,7 @@ export default {
 .box_ctn {
   background-color: white;
   border-radius: 20px;
+  box-shadow: 0px 5px 20px #dadada;
   width: 60%;
   margin: auto;
   margin-top: -12rem;

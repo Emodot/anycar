@@ -24,8 +24,13 @@
           {{ card.cylinder }}
         </p>
       </div>
-      <div class="card_amount">
-        <p>₦ {{ card.price }}</p>
+      <div class="bottom_section">
+        <div class="card_amount">
+          <p>₦ {{ card.price }}</p>
+        </div>
+        <div class="card_type">
+          <p>{{ card.condition }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -58,13 +63,10 @@ export default {
 }
 .card_ctn {
   /* padding: 30px; */
-  background-color: white;
-  border: 1px solid #99999969;
   border-radius: 20px;
   width: 31%;
   cursor: pointer;
-  box-shadow: 0px 5px 10px #dadada;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   transition:  0.4s all ease-in-out;
 }
 
@@ -105,15 +107,34 @@ export default {
 .other_info {
   color: #00000066;
 }
+
+.bottom_section {
+  display: flex;
+}
+
 .card_amount {
+  min-width: 7rem;
   width: fit-content;
-  padding: 7px 15px;
+  padding: 15px 20px;
   border-radius: 5px;
   background-color: #CCE6FF;
+  margin-right: 10px;
 }
 
 .card_amount p {
   color: var(--primary-color);
+}
+.card_type {
+  min-width: 5rem;
+  width: fit-content;
+  padding: 15px 20px;
+  border-radius: 5px;
+  background-color: #150a4133;
+  margin-right: 10px;
+}
+
+.card_type p {
+  color: #55003B;
 }
 
 @media only screen and (max-width: 1200px) {

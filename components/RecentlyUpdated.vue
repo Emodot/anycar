@@ -18,6 +18,14 @@
     <div class="product_list_ctn">
       <CarCard :card-details="cars" />
     </div>
+    <div class="bottom_text">
+      <p>
+        Didn’t find what you were looking for? <span class="bottom_link">See more</span>
+      </p>
+      <span class="material-icons-outlined">
+        arrow_forward
+      </span>
+    </div>
   </div>
 </template>
 
@@ -162,7 +170,8 @@ export default {
 .top_section {
   display: flex;
   justify-content: space-between;
-  padding: 20px 0 40px;
+  margin-top: 10rem;
+  /* padding: 20px 0 40px; */
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -199,7 +208,31 @@ export default {
 }
 
 .product_list_ctn {
-  padding: 5rem 0;
+  padding: 3rem 0;
+}
+
+.bottom_text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom_text p {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 16px;
+}
+
+.bottom_link {
+  color: #053361;
+  font-size: inherit;
+  font-weight: 700;
+}
+
+.material-icons-outlined {
+  color: #053361;
+  font-size: 18px;
+  margin-left: 10px;
 }
 
 @media only screen and (max-width: 900px) {
