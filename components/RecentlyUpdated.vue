@@ -5,7 +5,7 @@
         <h2 class="title">
           Recently Updated Cars
         </h2>
-        <p class="subt_title">
+        <p class="sub_title">
           Check the varieties of cars recently updated on our lots
         </p>
       </div>
