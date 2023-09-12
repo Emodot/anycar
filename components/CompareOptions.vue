@@ -1,6 +1,41 @@
 <template>
-  <div>
-
+  <div class="compare_ctn">
+    <div class="lhs">
+      <h1>
+        Don’t know what to go for? You can compare your options.
+      </h1>
+      <p class="sub_title">
+        Check the varieties of cars recently updated on our lots
+      </p>
+      <div class="add_car_section">
+        <div class="add_car_btn">
+          <span class="material-icons-outlined">
+            add_circle_outline
+          </span>
+          <p>ADD CAR</p>
+          <span class="material-icons-outlined">
+            expand_more
+          </span>
+        </div>
+        <div class="add_car_btn">
+          <span class="material-icons-outlined">
+            add_circle_outline
+          </span>
+          <p>ADD CAR</p>
+          <span class="material-icons-outlined">
+            expand_more
+          </span>
+        </div>
+      </div>
+      <button class="global_btn">
+        Compare
+      </button>
+    </div>
+    <div class="rhs">
+      <div class="rhs_img">
+        <img src="~assets/images/option_image.jpg" alt="">
+      </div>
+    </div>
   </div>
 </template>
 
@@ -11,5 +46,58 @@ export default {
 </script>
 
 <style scoped>
+.compare_ctn {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10rem;
+}
 
+.lhs {
+  flex-basis: 45%;
+}
+
+.sub_title {
+  margin-top: 2rem;
+}
+
+.add_car_section {
+  display: flex;
+  margin: 4rem 0 2rem;
+}
+
+.add_car_btn {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  border-radius: 5px;
+  background-color: #150a411a;
+  margin-right: 30px;
+}
+
+.add_car_btn p {
+  color: #150a4180;
+  margin: 0 10px;
+  font-weight: 700;
+}
+
+.material-icons-outlined {
+  color: var(--primary-color);
+  font-weight: 200;
+  font-size: 20px;
+}
+
+.rhs {
+  flex-basis: 45%;
+  display: flex;
+  justify-content: end;
+}
+
+.rhs_img {
+  width: 80%;
+}
+
+.rhs_img img {
+  width: 100%;
+  border-radius: 30px;
+}
 </style>
