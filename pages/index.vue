@@ -14,6 +14,7 @@
     <div class="body_ctn">
       <RecentlyUpdated />
       <CompareOptions />
+      <DoMoreAnycar />
     </div>
   </div>
 </template>
