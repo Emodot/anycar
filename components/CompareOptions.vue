@@ -89,7 +89,7 @@ export default {
 .rhs {
   flex-basis: 45%;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .rhs_img {
