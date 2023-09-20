@@ -21,13 +21,14 @@ export default {
 </script>
 
 <style scoped>
+.main_ctn {
+  padding: 120px 0;
+}
+
 .inner {
   max-width: 1344px;
   width: 80%;
   margin: auto;
-}
-.main_ctn {
-  padding: 120px 0;
 }
 
 .title {

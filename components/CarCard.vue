@@ -47,8 +47,8 @@ export default {
   methods: {
     selectProduct (card) {
       // console.log(card)
-      this.$store.commit('setselectedProduct', card)
-      this.$router.push(`/catalog/${card.name}`)
+      // this.$store.commit('setselectedProduct', card)
+      this.$router.push(`/buy-car/${card.name}`)
     }
   }
 
