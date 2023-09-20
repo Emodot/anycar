@@ -3,56 +3,27 @@
     <div class="modal reveals" @click.stop>
       <div class="top_section">
         <p class="modal_title">
-          Schedule an Inspection Date
+          Congratulations!
         </p>
         <span class="material-icons-outlined close" @click="$emit('close-modal')">
           close
         </span>
       </div>
       <div class="modal_content">
-        <div class="input_flex">
-          <div class="input_flex_item">
-            <p class="label">
-              First Name
-            </p>
-            <input class="form_input" type="text">
-          </div>
-          <div class="input_flex_item">
-            <p class="label">
-              Last Name
-            </p>
-            <input class="form_input" type="text">
-          </div>
+        <div class="modal_icon">
+          <img src="~assets/icons/success.gif" alt="">
         </div>
-        <div class="input_ctn">
-          <p class="label">
-            Phone Number
-          </p>
-          <input class="form_input" type="number">
+        <p class="modal_text">
+          Your inspection has been scheduled successfully for 4th September 2023 for 6pm, more details has been sent to your email someone from our support team will contact you
+        </p>
+        <div class="bottom_btn">
+          <button class="global_btn compare_btn">
+            My Dashboard
+          </button>
+          <button class="global_btn" @click="$emit('requestInspection')">
+            Ok, Close
+          </button>
         </div>
-        <div class="input_ctn">
-          <p class="label">
-            Email Address
-          </p>
-          <input class="form_input" type="email">
-        </div>
-        <div class="input_flex">
-          <div class="input_flex_item">
-            <p class="label">
-              Proposed Inspection Date
-            </p>
-            <input class="form_input" type="date">
-          </div>
-          <div class="input_flex_item">
-            <p class="label">
-              Proposed Inspection Time
-            </p>
-            <input class="form_input" type="time">
-          </div>
-        </div>
-        <button class="global_btn" @click="$emit('submit')">
-          Schedule Inspection
-        </button>
       </div>
     </div>
   </div>
@@ -104,9 +75,27 @@ export default {
   padding: 40px 4rem;
 }
 
+.modal_icon {
+  width: 50%;
+  margin: auto;
+  margin-top: -40px;
+}
+
+.modal_icon img {
+  width: 100%;
+  text-align: center;
+}
+
+.modal_text {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  margin-top: -30px;
+}
+
 .top_section {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   /* padding: 0 3rem; */
   border-bottom: 1px solid var(--border-color);
@@ -148,6 +137,22 @@ export default {
 .global_btn {
   width: 100%;
   margin-top: 2rem;
+}
+
+.bottom_btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.global_btn {
+  margin-left: 20px;
+}
+
+.compare_btn {
+  border: 1px solid var(--primary-color);
+  background-color: #fff;
+  color: var(--primary-color);
 }
 
 @media only screen and (max-width: 1200px) {
