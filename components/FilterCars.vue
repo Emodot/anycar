@@ -1,30 +1,71 @@
 <template>
-  <div class="products_ctn">
-    <div class="top_section">
-      <div>
-        <h2 class="title">
-          Recently Updated Cars
-        </h2>
-        <p class="sub_title">
-          Check the varieties of cars recently updated on our lots
-        </p>
-      </div>
-      <div class="tab_section">
-        <button class="global_btn">
-          Search for Cars
-        </button>
+  <div class="filter_ctn">
+    <div class="lhs">
+      <div class="size_ctn">
+        <div class="top_side">
+          <p class="filter_title">
+            Filter Result
+          </p>
+          <span class="material-icons-outlined tune_icon">
+            tune
+          </span>
+        </div>
+        <div class="filter_inner">
+          <p class="filter_name">
+            Filter By
+          </p>
+        </div>
+        <hr class="size_line">
+        <div class="filter_inner">
+          <p class="filter_name">
+            Make
+          </p>
+          <span class="material-icons-outlined arrow_right_icon">
+            chevron_right
+          </span>
+        </div>
+        <hr class="size_line">
+        <div class="filter_inner">
+          <p class="filter_name">
+            Year
+          </p>
+          <span class="material-icons-outlined arrow_right_icon">
+            chevron_right
+          </span>
+        </div>
+        <hr class="size_line">
+        <div class="filter_inner">
+          <p class="filter_name">
+            Price
+          </p>
+          <span class="material-icons-outlined arrow_right_icon">
+            chevron_right
+          </span>
+        </div>
+        <hr class="size_line">
+        <div class="filter_inner">
+          <p class="filter_name">
+            Mileage
+          </p>
+          <span class="material-icons-outlined arrow_right_icon">
+            chevron_right
+          </span>
+        </div>
+        <hr class="size_line">
+        <div class="filter_inner">
+          <p class="filter_name">
+            Type
+          </p>
+          <span class="material-icons-outlined arrow_right_icon">
+            chevron_right
+          </span>
+        </div>
       </div>
     </div>
-    <div class="product_list_ctn">
-      <CarCard :card-details="cars" />
-    </div>
-    <div class="bottom_text">
-      <p>
-        Didn’t find what you were looking for? <span class="bottom_link">See more</span>
-      </p>
-      <span class="material-icons-outlined">
-        arrow_forward
-      </span>
+    <div class="rhs">
+      <div class="product_list_ctn">
+        <CarCard :card-details="cars" />
+      </div>
     </div>
   </div>
 </template>
@@ -33,6 +74,12 @@
 export default {
   data () {
     return {
+      tabs: [
+        'All Toys',
+        'Wooden Toys',
+        'Stuffed Animals'
+      ],
+      activeTab: 'All Toys',
       cars: [
         {
           name: 'Ford Explore Limited SUV',
@@ -147,89 +194,74 @@ export default {
       ]
     }
   }
-
 }
 </script>
 
 <style scoped>
-.products_ctn {
-  margin-top: 30px;
-}
-
-.top_section {
+.filter_ctn {
   display: flex;
   justify-content: space-between;
-  margin-top: 10rem;
-  /* padding: 20px 0 40px; */
-  border-bottom: 1px solid var(--border-color);
 }
 
-.line {
-  /* padding-bottom: 40px; */
-  margin-top: -1px;
-  border: 1px solid var(--primary-color);
-  width: 11rem;
-  z-index: 2;
+.lhs {
+  flex-basis: 20%;
+}
+.size_ctn {
+  border-radius: 10px;
+  border: 1px solid rgba(21, 10, 65, 0.10);
+  background-color: #F0F1F2;
+  /* border-radius: 20px; */
+  padding: 10px 30px;
 }
 
-.tab_section {
+.top_side {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
 }
 
-.tab {
-  padding: 10px 20px;
-  border-radius: 30px;
-  cursor: pointer;
-}
-
-.tab p {
-  font-size: 13px;
-  line-height: 13px;
-}
-
-.product_list_ctn {
-  padding: 3rem 0;
-}
-
-.bottom_text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.bottom_text p {
-  text-align: center;
+.filter_title {
   color: var(--primary-color);
-  font-size: 16px;
-}
-
-.bottom_link {
-  color: #053361;
-  font-size: inherit;
+  font-size: 22px;
   font-weight: 700;
+  line-height: 48px;
 }
 
-.material-icons-outlined {
-  color: #053361;
-  font-size: 18px;
-  margin-left: 10px;
+.tune_icon {
+  color: var(--primary-color);
+  font-size: 20px;
 }
 
-@media only screen and (max-width: 900px) {
-  .navbar_inner {
-    width: 90%;
-  }
-}
-@media only screen and (max-width: 500px) {
-  .top_section {
-    flex-direction: column;
-    padding-bottom: 20px;
-  }
-
-  .title {
-    margin-bottom: 30px;
-  }
+.filter_inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
 }
 
+.filter_name {
+  color: var(--primary-color);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.arrow_right_icon {
+  color: var(--primary-color);
+  font-size: 22px;
+  font-weight: 100;
+}
+.size_value {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.size_line {
+  border: none;
+  border-top: 1px solid #150a4133;
+}
+
+.rhs {
+  flex-basis: 75%;
+}
 </style>

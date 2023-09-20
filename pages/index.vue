@@ -2,12 +2,7 @@
   <div class="main_ctn">
     <div class="hero_ctn">
       <div class="hero_inner">
-        <div class="search_input">
-          <input type="text" placeholder="Search by car by make or model">
-          <span class="material-icons-outlined">
-            search
-          </span>
-        </div>
+        <SearchInput />
       </div>
     </div>
     <PriceFilter />
@@ -40,7 +35,7 @@ export default {
   margin: auto;
 }
 
-.search_input {
+/* .search_input {
   width: 100%;
   display: flex;
   align-items: center;
@@ -51,7 +46,7 @@ export default {
 
 .search_input input {
   width: 100%;
-}
+} */
 
 .body_ctn {
   max-width: 1344px;

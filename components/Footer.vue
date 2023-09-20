@@ -81,7 +81,7 @@ export default {
   max-width: 1344px;
   width: 80%;
   margin: auto;
-  padding: 4rem;
+  padding: 6rem 6rem 2rem;
 }
 .footer_inner {
   /* padding-top: 4rem; */

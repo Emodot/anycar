@@ -12,7 +12,7 @@
       </div>
       <div class="navbar_middle">
         <div class="menu_list">
-          <NuxtLink to="/catalog">
+          <NuxtLink to="/buy-car">
             <p class="menu_item">
               Buy Car
             </p>
