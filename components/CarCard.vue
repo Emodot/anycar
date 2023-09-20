@@ -98,6 +98,7 @@ export default {
 
 .year {
   font-weight: 700;
+  font-size: 12px;
 }
 
 .dot {
@@ -106,6 +107,7 @@ export default {
 
 .other_info {
   color: #00000066;
+  font-size: 12px;
 }
 
 .bottom_section {
@@ -115,7 +117,7 @@ export default {
 .card_amount {
   min-width: 7rem;
   width: fit-content;
-  padding: 15px 20px;
+  padding: 12px 20px;
   border-radius: 5px;
   background-color: #CCE6FF;
   margin-right: 10px;
@@ -123,11 +125,13 @@ export default {
 
 .card_amount p {
   color: var(--primary-color);
+  font-size: 12px;
+  font-weight: 700;
 }
 .card_type {
   min-width: 5rem;
   width: fit-content;
-  padding: 15px 20px;
+  padding: 12px 20px;
   border-radius: 5px;
   background-color: #150a4133;
   margin-right: 10px;
@@ -135,6 +139,8 @@ export default {
 
 .card_type p {
   color: #55003B;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 @media only screen and (max-width: 1200px) {
