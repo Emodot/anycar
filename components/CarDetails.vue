@@ -79,7 +79,7 @@
           </p>
         </div>
         <div class="table_btn">
-          <button class="global_btn compare_btn">
+          <button class="global_btn_2">
             Compare Car
           </button>
           <button class="global_btn" @click="$emit('requestInspection')">
@@ -190,10 +190,10 @@ export default {
   margin-left: 20px;
 }
 
-.compare_btn {
+/* .compare_btn {
   border: 1px solid var(--primary-color);
   background-color: #fff;
   color: var(--primary-color);
-}
+} */
 
 </style>
