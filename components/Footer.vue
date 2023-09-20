@@ -12,29 +12,49 @@
         </div>
         <div class="footer_middle">
           <div class="menu_list">
-            <p class="menu_item">
-              Home
+            <p class="menu_item_head">
+              Solutions
             </p>
             <p class="menu_item">
-              Catalog
+              Car Financing
             </p>
             <p class="menu_item">
-              Delivery
+              Car Registration
             </p>
             <p class="menu_item">
-              About
+              Car Maintenance
             </p>
             <p class="menu_item">
-              Contacts
+              Car Insurance
+            </p>
+            <p class="menu_item">
+              Car Verification
             </p>
           </div>
         </div>
-        <div class="footer_rhs" />
+        <div class="footer_rhs">
+          <div class="menu_list">
+            <p class="menu_item_head">
+              Links
+            </p>
+            <p class="menu_item">
+              Buy Car
+            </p>
+            <p class="menu_item">
+              Sell Car
+            </p>
+            <p class="menu_item">
+              Compare Cars
+            </p>
+            <p class="menu_item">
+              Policies
+            </p>
+            <p class="menu_item">
+              Contact Us
+            </p>
+          </div>
+        </div>
       </div>
-      <hr class="footer_line">
-      <p class="copyright">
-        Copyright &copy; 2023 Powered by Motherboard Foods
-      </p>
     </div>
   </div>
 </template>
@@ -50,35 +70,39 @@ export default {
   color: #000;
 }
 .footer {
-  background-color: #000000;
-  box-shadow: 0px 5px 20px #dadada;
-  /* position: fixed; */
   bottom: 0;
   width: 100%;
   z-index: 5;
 }
 .footer_ctn {
-  border-radius: 30px;
+  box-shadow: 0px 5px 20px #dadada;
+  border-radius: 30px 30px 0 0;
   background-color: #FFF9F4;
   max-width: 1344px;
   width: 80%;
   margin: auto;
+  padding: 4rem;
 }
 .footer_inner {
-  padding-top: 4rem;
+  /* padding-top: 4rem; */
   /* height: 120px; */
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
 }
 
 .footer_lhs {
-  flex-basis: 30%;
+  flex-basis: 50%;
+}
+
+.sub_title {
+  width: 60%;
+  color: rgba(21, 10, 65, 0.60);
 }
 
 .logo {
-  margin-right: 5rem;
-  width: 50%;
+  margin-bottom: 2rem;
+  width: 30%;
 }
 
 .logo img {
@@ -103,6 +127,13 @@ export default {
 
 .menu_item {
   cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.menu_item_head {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 36px;
 }
 
 .social_ctn {
