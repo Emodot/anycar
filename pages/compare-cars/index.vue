@@ -4,10 +4,10 @@
       <div class="top_section">
         <div>
           <h2 class="title">
-            Recently Updated Cars
+            Compare cars available in our lots
           </h2>
           <p class="sub_title">
-            Check the varieties of cars recently updated on our lots
+            Make Better decisions before purchase while you compare side by side cars available in our lots
           </p>
         </div>
       </div>
@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="bottom_ctn">
-          <button class="global_btn">
+          <button class="global_btn" @click="$router.push('/compare-cars/select-car')">
             Select Cars to Compare
           </button>
           <button class="global_btn">
