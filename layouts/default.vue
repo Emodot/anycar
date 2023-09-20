@@ -37,7 +37,7 @@ export default {
 
 <style scoped>
 .main {
-  background-color: #F8F8F8;
+  background-color: #ffffff;
 }
 /* .main_content {
   padding: 90px 0;

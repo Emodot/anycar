@@ -22,7 +22,7 @@
               Sell Car
             </p>
           </NuxtLink>
-          <NuxtLink to="#">
+          <NuxtLink to="/compare-cars">
             <p class="menu_item">
               Compare
             </p>

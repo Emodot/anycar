@@ -25,7 +25,7 @@ export default {
   data () {
     return {
       inspectionForm: false,
-      successModal: true
+      successModal: false
     }
   },
   methods: {
