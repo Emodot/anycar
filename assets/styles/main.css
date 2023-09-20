@@ -92,6 +92,16 @@ h1 {
 	font-weight: 700;
 }
 
+.global_btn_2 {
+	padding: 15px 20px;
+	border-radius: 10px;
+	min-width: 8rem;
+	font-weight: 700;
+	border: 1px solid var(--primary-color);
+  background-color: #fff;
+  color: var(--primary-color);
+}
+
 .card_title {
 }
 

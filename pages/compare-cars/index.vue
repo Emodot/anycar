@@ -59,6 +59,87 @@
           </button>
         </div>
       </div>
+      <div v-if="carsSelected" class="details_ctn">
+        <div class="details_inner">
+          <p class="details_name">
+            4 - Cylinder
+          </p>
+          <p class="details_value">
+            Engine
+          </p>
+          <p class="details_name">
+            4 - Cylinder
+          </p>
+        </div>
+        <hr class="details_line">
+        <div class="details_inner">
+          <p class="details_name">
+            Automatic
+          </p>
+          <p class="details_value">
+            Transmission
+          </p>
+          <p class="details_name">
+            Automatic
+          </p>
+        </div>
+        <hr class="details_line">
+        <div class="details_inner">
+          <p class="details_name">
+            Black
+          </p>
+          <p class="details_value">
+            Interior Color
+          </p>
+          <p class="details_name">
+            Black
+          </p>
+        </div>
+        <hr class="details_line">
+        <div class="details_inner">
+          <p class="details_name">
+            Grey
+          </p>
+          <p class="details_value">
+            Exterior Color
+          </p>
+          <p class="details_name">
+            Grey
+          </p>
+        </div>
+        <hr class="details_line">
+        <div class="details_inner">
+          <p class="details_name">
+            JTNB ******************
+          </p>
+          <p class="details_value">
+            VIN
+          </p>
+          <p class="details_name">
+            JTNB ******************
+          </p>
+        </div>
+        <hr class="details_line">
+        <div class="details_inner">
+          <p class="details_name">
+            N13,500,000
+          </p>
+          <p class="details_value">
+            Asking Price
+          </p>
+          <p class="details_name">
+            N13,500,000
+          </p>
+        </div>
+        <div class="details_btn_ctn">
+          <button class="global_btn_2">
+            Request Inspection
+          </button>
+          <button class="global_btn_2">
+            Request Inspection
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -87,7 +168,6 @@ export default {
   display: flex;
   justify-content: space-between;
   /* padding: 20px 0 40px; */
-  border-bottom: 1px solid var(--border-color);
 }
 
 .title {
@@ -134,5 +214,41 @@ export default {
 .bottom_ctn {
   display: flex;
   justify-content: space-between;
+}
+
+.details_ctn {
+  margin-top: 5rem;
+  /* border: 1px solid #150a411a; */
+  border-radius: 20px;
+  padding: 4rem 9rem;
+  background-color: #F3F8FF;
+}
+
+.details_inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.details_name {
+  font-size: 12px;
+  font-weight: 400;
+}
+.details_value {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.details_line {
+  border: none;
+  border-top: 1px solid #150a411a;
+}
+
+.details_btn_ctn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 40px;
 }
 </style>
