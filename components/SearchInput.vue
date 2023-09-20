@@ -21,6 +21,7 @@ export default {
   background-color: #FFFFFC;
   padding: 5px 20px 5px 40px;
   border-radius: 10px;
+  box-shadow: 0px 4px 10px 0px #150a4114;
 }
 
 .search_input input {
