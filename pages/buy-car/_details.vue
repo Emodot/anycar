@@ -15,7 +15,8 @@
       <CarDetails @requestInspection="inspectionForm = true" />
       <OtherCarsYouMayLike />
     </div>
-    <ModalsScheduleInspection v-if="inspectionForm" @close-modal="inspectionForm = false" />
+    <ModalsScheduleInspection v-if="inspectionForm" @close-modal="inspectionForm = false" @submit="submit" />
+    <ModalsSuccess v-if="successModal" @close-modal="successModal = false" />
   </div>
 </template>
 
@@ -23,7 +24,14 @@
 export default {
   data () {
     return {
-      inspectionForm: true
+      inspectionForm: false,
+      successModal: true
+    }
+  },
+  methods: {
+    submit () {
+      this.inspectionForm = false
+      this.successModal = true
     }
   }
 
