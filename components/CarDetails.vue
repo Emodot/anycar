@@ -79,8 +79,12 @@
           </p>
         </div>
         <div class="table_btn">
-          <button class="global_btn compare_btn">Compare Car</button>
-          <button class="global_btn">Request Inspection</button>
+          <button class="global_btn compare_btn">
+            Compare Car
+          </button>
+          <button class="global_btn" @click="$emit('requestInspection')">
+            Request Inspection
+          </button>
         </div>
       </div>
     </div>
