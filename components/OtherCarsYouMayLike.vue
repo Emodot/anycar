@@ -3,17 +3,17 @@
     <div class="top_section">
       <div>
         <h2 class="title">
-          Recently Updated Cars
+          Other Cars you may like
         </h2>
         <p class="sub_title">
           Check the varieties of cars recently updated on our lots
         </p>
       </div>
-      <div class="tab_section">
+      <!-- <div class="tab_section">
         <button class="global_btn">
           Search for Cars
         </button>
-      </div>
+      </div> -->
     </div>
     <div class="product_list_ctn">
       <CarCard :card-details="cars" />

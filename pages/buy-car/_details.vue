@@ -2,7 +2,7 @@
   <div class="main_ctn">
     <div class="inner">
       <div class="top">
-        <div class="back_ctn">
+        <div class="back_ctn" @click="$router.go(-1)">
           <span class="material-icons-outlined">
             arrow_back
           </span>
@@ -13,6 +13,7 @@
         </div>
       </div>
       <CarDetails />
+      <OtherCarsYouMayLike />
     </div>
   </div>
 </template>
@@ -43,6 +44,7 @@ export default {
 .back_ctn {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .back_ctn .material-icons-outlined {
