@@ -36,6 +36,20 @@
           </p>
           <input class="form_input" type="email">
         </div>
+        <div class="input_flex">
+          <div class="input_flex_item">
+            <p class="label">
+              Proposed Inspection Date
+            </p>
+            <input class="form_input" type="date">
+          </div>
+          <div class="input_flex_item">
+            <p class="label">
+              Proposed Inspection Time
+            </p>
+            <input class="form_input" type="time">
+          </div>
+        </div>
         <button class="global_btn">
           Schedule Inspection
         </button>
