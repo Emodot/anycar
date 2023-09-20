@@ -12,14 +12,20 @@
           <SearchInput />
         </div>
       </div>
-      <CarDetails />
+      <CarDetails @requestInspection="inspectionForm = true" />
       <OtherCarsYouMayLike />
     </div>
+    <ModalsScheduleInspection v-if="inspectionForm" @close-modal="inspectionForm = false" />
   </div>
 </template>
 
 <script>
 export default {
+  data () {
+    return {
+      inspectionForm: true
+    }
+  }
 
 }
 </script>
