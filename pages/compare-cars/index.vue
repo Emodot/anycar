@@ -148,7 +148,7 @@
 export default {
   data () {
     return {
-      carsSelected: false
+      carsSelected: true
     }
   }
 }

@@ -83,6 +83,21 @@ h1 {
 	padding: 0 20px;
 }
 
+.input_flex {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.input_ctn {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.input_flex_item {
+  flex-basis: 48%;
+}
+
 .global_btn {
 	background-color: var(--primary-color);
 	color: white;
@@ -102,7 +117,38 @@ h1 {
   color: var(--primary-color);
 }
 
-.card_title {
+.form-select {
+  position: relative;
+  background-color: transparent;
+  z-index: 2;
+  /* margin-top: 10px; */
+  /* margin-bottom: 30px; */
+}
+
+.form-select select {
+  z-index: 2;
+  display: block;
+  border: 1px solid var(--primary-color);
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  color: #A7ACB1;
+  font-weight: 600;
+  background-color: transparent;
+  padding: 0 16px 0 20px;
+  width: 100%;
+  outline: none;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-select .arrow {
+  z-index: -1;
+  position: absolute;
+  top: 20px;
+  left: 90%;
 }
 
 .come-down {

@@ -17,7 +17,7 @@
               Buy Car
             </p>
           </NuxtLink>
-          <NuxtLink to="#">
+          <NuxtLink to="/sell-car">
             <p class="menu_item">
               Sell Car
             </p>
