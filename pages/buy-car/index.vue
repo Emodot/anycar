@@ -16,7 +16,11 @@
 
 <script>
 export default {
-
+  async asyncData ({ $axios }) {
+    const ip = await $axios.$get('api/sell')
+    console.log(ip)
+    return { ip }
+  }
 }
 </script>
 
