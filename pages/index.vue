@@ -7,7 +7,7 @@
     </div>
     <PriceFilter />
     <div class="body_ctn">
-      <RecentlyUpdated />
+      <RecentlyUpdated :data="limitedCars" />
       <CompareOptions />
       <DoMoreAnycar />
     </div>
@@ -16,7 +16,17 @@
 
 <script>
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
+  async asyncData ({ $axios }) {
+    const cars = await $axios.$get('api/sell')
+    const updatedCars = cars.docs
+    let limitedCars = updatedCars
+    if (updatedCars.length > 6) {
+      limitedCars = updatedCars.slice(0, 6)
+    }
+    // console.log(limitedCars)
+    return { limitedCars }
+  }
 }
 </script>
 
