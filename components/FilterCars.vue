@@ -64,7 +64,7 @@
     </div>
     <div class="rhs">
       <div class="product_list_ctn">
-        <CarCard :card-details="cars" />
+        <CarCard :card-details="data.docs" :img-height="11" />
       </div>
     </div>
   </div>
@@ -72,14 +72,21 @@
 
 <script>
 export default {
+  props: {
+    data: {
+      type: Object,
+      default: () => {}
+    }
+  },
+  // async asyncData ({ $axios }) {
+  //   const carData = await $axios.$get('api/sell')
+  //   console.log(carData)
+  //   const allCars = carData.docs
+  //   return { allCars }
+  // },
   data () {
     return {
-      tabs: [
-        'All Toys',
-        'Wooden Toys',
-        'Stuffed Animals'
-      ],
-      activeTab: 'All Toys',
+      // allCars: this.carData,
       cars: [
         {
           name: 'Ford Explore Limited SUV',

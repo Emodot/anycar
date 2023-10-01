@@ -1,38 +1,72 @@
 <template>
   <div class="card_list">
     <div v-for="(card, index) in cardDetails" :key="index" class="card_ctn" @click="selectProduct(card)">
-      <div class="card_image">
-        <img :src="card.image" alt="">
+      <div class="card_image" :style="{ backgroundImage: `url(${card.images[0].urls})`, height: `${imgHeight}rem` }">
+        <!-- <img :src="card.images[0].urls" alt=""> -->
       </div>
       <p class="card_title">
-        {{ card.name }}
+        {{ card.make }}
       </p>
       <div class="card_details">
         <p class="year">
-          {{ card.year }}
+          {{ card.yearOfManufacture }}
         </p>
         <img class="dot" src="~assets/icons/Ellipse_3.svg" alt="">
         <p class="other_info">
-          {{ card.miles }}
+          243 Miles
         </p>
         <img class="dot" src="~assets/icons/Ellipse_3.svg" alt="">
         <p class="other_info">
-          {{ card.type }}
+          {{ card.model }}
         </p>
         <img class="dot" src="~assets/icons/Ellipse_3.svg" alt="">
         <p class="other_info">
-          {{ card.cylinder }}
+          {{ card.engineType }}
         </p>
       </div>
       <div class="bottom_section">
         <div class="card_amount">
-          <p>₦ {{ card.price }}</p>
+          <p>₦ {{ card.askingPrice }}</p>
         </div>
         <div class="card_type">
-          <p>{{ card.condition }}</p>
+          <!-- <p>{{ card.condition }}</p> -->
+          <p>New</p>
         </div>
       </div>
     </div>
+    <!-- <div v-for="(card, index) in cardDetails" :key="index" class="card_ctn" @click="selectProduct(card)">
+      <div class="card_image">
+        <img :src="card.images[0].urls" alt="">
+      </div>
+      <p class="card_title">
+        {{ card.make }}
+      </p>
+      <div class="card_details">
+        <p class="year">
+          {{ card.yearOfManufacture }}
+        </p>
+        <img class="dot" src="~assets/icons/Ellipse_3.svg" alt="">
+        <p class="other_info">
+          243 Miles
+        </p>
+        <img class="dot" src="~assets/icons/Ellipse_3.svg" alt="">
+        <p class="other_info">
+          {{ card.model }}
+        </p>
+        <img class="dot" src="~assets/icons/Ellipse_3.svg" alt="">
+        <p class="other_info">
+          {{ card.engineType }}
+        </p>
+      </div>
+      <div class="bottom_section">
+        <div class="card_amount">
+          <p>₦ {{ card.askingPrice }}</p>
+        </div>
+        <div class="card_type">
+          <p>New</p>
+        </div>
+      </div>
+    </div> -->
   </div>
 </template>
 
@@ -42,6 +76,10 @@ export default {
     cardDetails: {
       type: Array,
       default: () => []
+    },
+    imgHeight: {
+      type: Number,
+      default: () => 14
     }
   },
   methods: {
@@ -78,12 +116,17 @@ export default {
 
 .card_image {
   width: 100%;
+  height: 14rem;
+  border-radius: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* transition: transform .5s; */
 }
 
-.card_image img {
+/* .card_image img {
   width: 100%;
-  border-radius: 20px;
-}
+} */
 
 .card_title {
   margin: 15px 0;
