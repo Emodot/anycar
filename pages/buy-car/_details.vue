@@ -70,17 +70,6 @@ export default {
   margin-bottom: 4rem;
 }
 
-.back_ctn {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.back_ctn .material-icons-outlined {
-  font-size: 20px;
-  margin-right: 10px;
-}
-
 .search_side {
   flex-basis: 30%;
 }
