@@ -7,7 +7,7 @@
         </h2>
         <SearchInput />
         <div class="content">
-          <FilterCars />
+          <FilterCars :data="cars" />
         </div>
       </div>
     </div>
@@ -17,9 +17,9 @@
 <script>
 export default {
   async asyncData ({ $axios }) {
-    const ip = await $axios.$get('api/sell')
-    console.log(ip)
-    return { ip }
+    const cars = await $axios.$get('api/sell')
+    console.log(cars)
+    return { cars }
   }
 }
 </script>
