@@ -1,12 +1,13 @@
 <template>
   <div class="details">
     <div class="lhs">
-      <div class="main_image">
-        <img src="~assets/images/car-2.jpg" alt="">
+      <div class="main_image" :style="{ backgroundImage: `url(${data.images[0].urls})` }">
+        <!-- <img src="~assets/images/car-2.jpg" alt=""> -->
       </div>
       <div class="other_images">
-        <div v-for="image in 5" :key="image.index" class="inner_images">
-          <img src="~assets/images/car.jpg" alt="">
+        <div v-for="image in data.images" :key="image.index" class="inner_images">
+          <div :style="{ backgroundImage: `url(${image.urls})` }" />
+          <!-- <img src="~assets/images/car.jpg" alt=""> -->
         </div>
       </div>
     </div>
@@ -14,19 +15,19 @@
       <h2>Ford Explore Limited SUV</h2>
       <div class="car_options">
         <div class="option">
-          <p>2018</p>
+          <p>{{ data.yearOfManufacture }}</p>
         </div>
         <div class="option">
-          <p>475 Miles</p>
+          <p>243 Miles</p>
         </div>
         <div class="option">
-          <p>AWD</p>
+          <p>{{ data.model }}</p>
         </div>
         <div class="option">
-          <p>4-Cylinder Turbo</p>
+          <p>{{ data.engineType }}</p>
         </div>
         <div class="option">
-          <p>Foreign Used</p>
+          <p>New</p>
         </div>
       </div>
       <div class="table_ctn">
@@ -35,7 +36,7 @@
             Engine
           </p>
           <p class="table_value">
-            4 - Cylinder
+            {{ data.engineType }}
           </p>
         </div>
         <div class="table_inner">
@@ -43,7 +44,7 @@
             Transmission
           </p>
           <p class="table_value">
-            Automatic
+            {{ data.transmissionType }}
           </p>
         </div>
         <div class="table_inner">
@@ -51,7 +52,7 @@
             Interior Color
           </p>
           <p class="table_value">
-            Black
+            {{ data.interiorColor }}
           </p>
         </div>
         <div class="table_inner">
@@ -59,7 +60,7 @@
             Exterior Color
           </p>
           <p class="table_value">
-            Grey
+            {{ data.exteriorColor }}
           </p>
         </div>
         <div class="table_inner">
@@ -67,7 +68,7 @@
             VIN
           </p>
           <p class="table_value">
-            JTNB ******************
+            {{ data.vin }}
           </p>
         </div>
         <div class="table_inner">
@@ -75,7 +76,7 @@
             Asking Price
           </p>
           <p class="table_value">
-            N13,500,000
+            {{ data.askingPrice }}
           </p>
         </div>
         <div class="table_btn">
@@ -93,7 +94,12 @@
 
 <script>
 export default {
-
+  props: {
+    data: {
+      type: Object,
+      default: () => {}
+    }
+  }
 }
 </script>
 
@@ -109,12 +115,16 @@ export default {
 
 .main_image {
   width: 100%;
+  border-radius: 10px;
+  height: 25rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.main_image img {
+/* .main_image img {
   width: 100%;
-  border-radius: 10px;
-}
+} */
 
 .other_images {
   display: flex;
@@ -128,9 +138,13 @@ export default {
   margin-bottom: 5px;
 }
 
-.inner_images img {
+.inner_images div {
   width: 100%;
+  height: 10rem;
   border-radius: 7px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .rhs {

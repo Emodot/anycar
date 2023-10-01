@@ -12,8 +12,8 @@
           <SearchInput />
         </div>
       </div>
-      <CarDetails @requestInspection="inspectionForm = true" />
-      <OtherCarsYouMayLike />
+      <CarDetails :data="carsDetails.docs" @requestInspection="inspectionForm = true" />
+      <OtherCarsYouMayLike :data="limitedCars" />
     </div>
     <ModalsScheduleInspection v-if="inspectionForm" @close-modal="inspectionForm = false" @submit="submit" />
     <ModalsSuccess v-if="successModal" @close-modal="successModal = false" />
@@ -22,6 +22,21 @@
 
 <script>
 export default {
+  async asyncData ({ $axios, params }) {
+    // console.log(params)
+    const carId = params.details
+    const [carsDetails, cars] = await Promise.all([
+      $axios.$get(`api/sell/${carId}`),
+      $axios.$get('api/sell')
+    ])
+    const otherCars = cars.docs
+    let limitedCars = otherCars
+    if (otherCars.length > 6) {
+      limitedCars = otherCars.slice(0, 6)
+    }
+    console.log(carsDetails)
+    return { carsDetails, limitedCars }
+  },
   data () {
     return {
       inspectionForm: false,
