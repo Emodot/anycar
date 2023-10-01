@@ -151,6 +151,35 @@ h1 {
   left: 90%;
 }
 
+
+.vue-slider-process {
+  background-color: var(--primary-color) !important;
+}
+
+.vue-slider-dot-handle-focus {
+	border: none !important;
+	filter: drop-shadow(0px 4px 10px rgba(21, 10, 65, 0.30));
+}
+
+.vue-slider-dot-handle {
+	border: none !important;
+	filter: drop-shadow(0px 4px 10px rgba(21, 10, 65, 0.30));
+}
+
+.vue-slider-dot-tooltip-inner {
+	border: none !important;
+	background-color: transparent !important;
+	box-shadow: none !important;
+}
+
+.vue-slider-dot-tooltip-inner-bottom::after {
+	display: none !important;
+}
+
+.vue-slider-dot-tooltip-text {
+	color: rgba(0, 0, 0, 0.50) !important;
+}
+
 .come-down {
 	animation: come-down .5s ease-in-out;
 	-webkit-animation: come-down .5s ease-in-out;

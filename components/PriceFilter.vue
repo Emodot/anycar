@@ -7,6 +7,16 @@
       <p class="sub_head">
         Search for any car with a price filter
       </p>
+      <div class="range_slider">
+        <vue-slider
+          v-model="value"
+          v-bind="options"
+          :tooltip-formatter="formatter2"
+          :enable-cross="false"
+          :tooltip="'always'"
+          :tooltip-placement="['bottom', 'bottom']"
+        />
+      </div>
       <div class="bottom">
         <div class="lhs">
           <p class="lhs_text">
@@ -41,7 +51,7 @@
             Est. Average Price
           </p>
           <h2 class="price">
-            N12,450,000
+            ₦12,450,000
           </h2>
           <button class="global_btn">
             Search for Cars
@@ -53,7 +63,26 @@
 </template>
 
 <script>
+import VueSlider from 'vue-slider-component'
+import 'vue-slider-component/theme/antd.css'
 export default {
+  components: {
+    VueSlider
+  },
+  data () {
+    return {
+      value: [900000, 10000000],
+      options: {
+        min: 500000,
+        max: 30000000,
+        interval: 100000,
+        dotSize: 20,
+        height: 5
+        // tooltip: 'active'
+      },
+      formatter2: v => `₦${('' + v).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`
+    }
+  }
 
 }
 </script>
@@ -82,6 +111,11 @@ export default {
   color: #00000080;
   text-align: center;
   margin-top: 7px;
+}
+
+.range_slider {
+  width: 50%;
+  margin: 30px auto;
 }
 
 .bottom {

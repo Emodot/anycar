@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="product_list_ctn">
-      <CarCard :card-details="cars" />
+      <CarCard :card-details="data" />
     </div>
     <div class="bottom_text">
       <p>
@@ -31,6 +31,12 @@
 
 <script>
 export default {
+  props: {
+    data: {
+      type: Array,
+      default: () => []
+    }
+  },
   data () {
     return {
       cars: [

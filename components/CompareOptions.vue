@@ -8,7 +8,7 @@
         Check the varieties of cars recently updated on our lots
       </p>
       <div class="add_car_section">
-        <div class="add_car_btn">
+        <div class="add_car_btn" @click="$router.push('/compare-cars')">
           <span class="material-icons-outlined">
             add_circle_outline
           </span>
@@ -66,6 +66,7 @@ export default {
 }
 
 .add_car_btn {
+  cursor: pointer;
   display: flex;
   align-items: center;
   padding: 15px 20px;
