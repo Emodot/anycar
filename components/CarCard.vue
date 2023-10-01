@@ -34,39 +34,6 @@
         </div>
       </div>
     </div>
-    <!-- <div v-for="(card, index) in cardDetails" :key="index" class="card_ctn" @click="selectProduct(card)">
-      <div class="card_image">
-        <img :src="card.images[0].urls" alt="">
-      </div>
-      <p class="card_title">
-        {{ card.make }}
-      </p>
-      <div class="card_details">
-        <p class="year">
-          {{ card.yearOfManufacture }}
-        </p>
-        <img class="dot" src="~assets/icons/Ellipse_3.svg" alt="">
-        <p class="other_info">
-          243 Miles
-        </p>
-        <img class="dot" src="~assets/icons/Ellipse_3.svg" alt="">
-        <p class="other_info">
-          {{ card.model }}
-        </p>
-        <img class="dot" src="~assets/icons/Ellipse_3.svg" alt="">
-        <p class="other_info">
-          {{ card.engineType }}
-        </p>
-      </div>
-      <div class="bottom_section">
-        <div class="card_amount">
-          <p>₦ {{ card.askingPrice }}</p>
-        </div>
-        <div class="card_type">
-          <p>New</p>
-        </div>
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -86,7 +53,7 @@ export default {
     selectProduct (card) {
       // console.log(card)
       // this.$store.commit('setselectedProduct', card)
-      this.$router.push(`/buy-car/${card.name}`)
+      this.$router.push(`/buy-car/${card._id}`)
     }
   }
 
