@@ -151,6 +151,19 @@ h1 {
   left: 90%;
 }
 
+.back_ctn {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.back_ctn .material-icons-outlined {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+
+/* Vue range slider */
 
 .vue-slider-process {
   background-color: var(--primary-color) !important;

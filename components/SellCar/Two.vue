@@ -26,11 +26,14 @@
         <div class="form-select">
           <select v-model="formTwo.engine_type">
             <option value="" disabled />
-            <option value="1">
-              Option 1
+            <option value="4 - Cylinder">
+              4 - Cylinder
             </option>
-            <option value="2">
-              Option 2
+            <option value="6 - Cylinder">
+              6 - Cylinder
+            </option>
+            <option value="8 - Cylinder">
+              8 - Cylinder
             </option>
           </select>
           <span class="material-icons-outlined arrow">
