@@ -19,9 +19,9 @@
         </div>
         <div class="rhs">
           <div class="rhs_inner">
-            <SellCarOne v-if="formOne" />
-            <SellCarTwo v-if="formTwo" />
-            <SellCarThree v-if="formThree" />
+            <SellCarOne v-if="formOne" :save-form="saveFormOne" @next="toFormTwo()" />
+            <SellCarTwo v-if="formTwo" :save-form="saveFormTwo" @next="toFormThree()" />
+            <SellCarThree v-if="formThree" :save-form="saveFormThree" @next="submit()" />
             <div class="bottom_section">
               <div class="progress_bar">
                 <div :class="`progress_line ${formOneCompleted ? 'completed_line' : formOne ? 'active_line completed_line' : ''}`" />
@@ -32,7 +32,7 @@
                 <button :class="`global_btn_2 ${formOne ? 'disabled_btn' : ''}`" @click="prevForm()">
                   Prev
                 </button>
-                <button class="global_btn" @click="nextForm()">
+                <button class="global_btn" @click="submitForm()">
                   {{ formThree ? 'Submit' : 'Next' }}
                 </button>
               </div>
@@ -49,6 +49,9 @@
 export default {
   data () {
     return {
+      saveFormOne: false,
+      saveFormTwo: false,
+      saveFormThree: false,
       formOne: true,
       formTwo: false,
       formThree: false,
@@ -59,27 +62,47 @@ export default {
     }
   },
   methods: {
-    nextForm () {
+    submitForm () {
       if (this.formOne) {
-        this.formOne = false
-        this.formTwo = true
-        this.formOneCompleted = true
+        this.saveFormOne = true
+        this.saveFormTwo = false
+        this.saveFormThree = false
       } else if (this.formTwo) {
-        this.formOne = false
-        this.formTwo = false
-        this.formThree = true
-        this.formTwoCompleted = true
+        this.saveFormTwo = true
+        this.saveFormOne = false
+        this.saveFormThree = false
       } else {
-        console.log(this.formData)
+        this.saveFormThree = true
+        this.saveFormTwo = false
+        this.saveFormOne = false
       }
     },
+    toFormTwo () {
+      this.formOne = false
+      this.formTwo = true
+      this.formOneCompleted = true
+    },
+    toFormThree () {
+      this.formOne = false
+      this.formTwo = false
+      this.formThree = true
+      this.formTwoCompleted = true
+    },
+    submit () {
+      const formData = this.$store.state.sellCarForm
+      console.log(formData)
+    },
     prevForm () {
+      this.saveFormTwo = false
+      this.saveFormOne = false
+      this.saveFormThree = false
       if (this.formTwo) {
         this.formTwoCompleted = false
         this.formOneCompleted = false
         this.formTwo = false
         this.formThree = false
         this.formOne = true
+        console.log(this.formOne)
       } else if (this.formThree) {
         this.formThreeCompleted = false
         this.formTwoCompleted = false
