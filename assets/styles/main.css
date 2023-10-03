@@ -133,7 +133,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   height: 60px;
-  color: #A7ACB1;
+  /* color: #A7ACB1; */
   font-weight: 600;
   background-color: transparent;
   padding: 0 16px 0 20px;
@@ -193,6 +193,17 @@ h1 {
 	color: rgba(0, 0, 0, 0.50) !important;
 }
 
+
+
+/* datepicker */
+
+.datePicker {
+	border-radius: 6px;
+	border: 1px solid var(--primary-color);
+	height: 55px;
+	width: 100%;
+	padding: 0 20px;
+}
 .come-down {
 	animation: come-down .5s ease-in-out;
 	-webkit-animation: come-down .5s ease-in-out;

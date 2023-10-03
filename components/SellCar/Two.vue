@@ -53,6 +53,12 @@
 
 <script>
 export default {
+  props: {
+    saveForm: {
+      type: Boolean,
+      default: () => false
+    }
+  },
   data () {
     return {
       formTwo: {
@@ -63,6 +69,26 @@ export default {
         asking_price: ''
       }
     }
+  },
+  watch: {
+    saveForm: {
+      immediate: true,
+      handler (val) {
+        // console.log(val)
+        if (val) {
+          this.$store.dispatch('setSellCarForm', this.formTwo)
+          this.$emit('next')
+        }
+      }
+    }
+  },
+  created () {
+    const formData = this.$store.state.sellCarForm
+    this.formTwo.interior_color = formData.interior_color
+    this.formTwo.exterior_color = formData.exterior_color
+    this.formTwo.vin = formData.vin
+    this.formTwo.engine_type = formData.engine_type
+    this.formTwo.asking_price = formData.asking_price
   }
 }
 </script>

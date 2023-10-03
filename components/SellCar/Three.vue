@@ -36,6 +36,12 @@
 
 <script>
 export default {
+  props: {
+    saveForm: {
+      type: Boolean,
+      default: () => false
+    }
+  },
   data () {
     return {
       formThree: {
@@ -43,6 +49,23 @@ export default {
         phone: ''
       }
     }
+  },
+  watch: {
+    saveForm: {
+      immediate: true,
+      handler (val) {
+        // console.log(val)
+        if (val) {
+          this.$store.dispatch('setSellCarForm', this.formThree)
+          this.$emit('next')
+        }
+      }
+    }
+  },
+  created () {
+    const formData = this.$store.state.sellCarForm
+    this.formThree.name = formData.name
+    this.formThree.phone = formData.phone
   }
 }
 </script>
