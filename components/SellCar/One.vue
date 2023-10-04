@@ -162,6 +162,7 @@ export default {
   },
   created () {
     const formData = this.$store.state.sellCarForm
+    console.log(formData)
     this.formOne.make = formData.make
     this.formOne.model = formData.model
     this.formOne.year_manufacture = formData.year_manufacture
