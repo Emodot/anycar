@@ -27,7 +27,10 @@ export default {
   css: ['assets/styles/main.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '~/plugins/vuex-persist', ssr: false }],
+  plugins: [
+    { src: '~/plugins/vuex-persist', ssr: false },
+    { src: '~/plugins/toaster', ssr: false }
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -37,11 +40,49 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module'
   ],
+  loading: {
+    height: '2px',
+    color: '#150A41'
+  },
+  toast: {
+    position: 'top-right',
+    register: [
+      {
+        name: 'custom_success',
+        message: message => message,
+        options: {
+          type: 'success',
+          duration: 4000,
+          action: {
+            icon: 'close',
+            onClick: (e, toastObject) => {
+              toastObject.goAway(0)
+            }
+          }
+        }
+      },
+      {
+        name: 'custom_error',
+        message: message => message,
+        options: {
+          type: 'error',
+          duration: 3000,
+          action: {
+            icon: 'close',
+            onClick: (e, toastObject) => {
+              toastObject.goAway(0)
+            }
+          }
+        }
+      }
+    ]
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/toast'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

@@ -21,7 +21,7 @@
           <div class="rhs_inner">
             <SellCarOne v-if="formOne" :save-form="saveFormOne" @next="toFormTwo()" />
             <SellCarTwo v-if="formTwo" :save-form="saveFormTwo" @next="toFormThree()" />
-            <SellCarThree v-if="formThree" :save-form="saveFormThree" @next="submit()" />
+            <SellCarThree v-if="formThree" :save-form="saveFormThree" @next="submit" />
             <div class="bottom_section">
               <div class="progress_bar">
                 <div :class="`progress_line ${formOneCompleted ? 'completed_line' : formOne ? 'active_line completed_line' : ''}`" />
@@ -32,8 +32,11 @@
                 <button :class="`global_btn_2 ${formOne ? 'disabled_btn' : ''}`" @click="prevForm()">
                   Prev
                 </button>
-                <button class="global_btn" @click="submitForm()">
+                <button v-if="!loading" class="global_btn" @click="submitForm()">
                   {{ formThree ? 'Submit' : 'Next' }}
+                </button>
+                <button v-else class="global_btn" disabled>
+                  <Loader class="come-down" />
                 </button>
               </div>
             </div>
@@ -58,7 +61,8 @@ export default {
       formOneCompleted: false,
       formTwoCompleted: false,
       formThreeCompleted: false,
-      carAdded: false
+      carAdded: false,
+      loading: false
     }
   },
   methods: {
@@ -88,9 +92,52 @@ export default {
       this.formThree = true
       this.formTwoCompleted = true
     },
-    submit () {
-      const formData = this.$store.state.sellCarForm
-      console.log(formData)
+    async submit (data) {
+      this.loading = true
+      const form = this.$store.state.sellCarForm
+      const carImages = data.images
+      console.log(...carImages)
+      // const images = carImages.map(function (item) {
+      //   return item
+      // })
+
+      // console.log(...images)
+      const formdata = new FormData()
+      formdata.append('make', form.make)
+      formdata.append('model', form.model)
+      formdata.append('yearOfManufacture', form.year_manufacture)
+      formdata.append('condition', form.condition)
+      formdata.append('transmissionType', form.transmission_type)
+      formdata.append('interiorColor', form.interior_color)
+      formdata.append('exteriorColor', form.exterior_color)
+      formdata.append('vin', form.vin)
+      formdata.append('engineType', form.engine_type)
+      formdata.append('name', form.name)
+      formdata.append('phoneNumber', form.phone)
+      formdata.append('images', ...carImages)
+      formdata.append('email', form.email)
+      formdata.append('askingPrice', form.asking_price)
+      await this.$axios.$post('api/sell', formdata)
+        .then((response) => {
+          console.log(response)
+          this.$toaster.showToast({
+            content: response.data?.message || 'Car Sale created successfully',
+            state: 'success'
+          })
+        })
+        .catch((_err) => {
+          const errorMsg = _err?.response?.data?.error || _err?.message
+          const feedback = {
+            content:
+              errorMsg || 'Oops, something went wrong, please try again later',
+            state: 'error'
+          }
+          console.log(feedback)
+          this.$toaster.showToast(feedback)
+        })
+        .finally(() => {
+          this.loading = false
+        })
     },
     prevForm () {
       this.saveFormTwo = false

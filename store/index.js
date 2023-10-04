@@ -11,7 +11,10 @@ export const state = () => ({
     engine_type: '',
     asking_price: '',
     name: '',
-    phone: ''
+    email: '',
+    phone: '',
+    images: [],
+    displayedImages: []
   },
   formProgress: {}
 })
@@ -23,6 +26,25 @@ export const mutations = {
       ...val // Update only the specified properties
     }
   },
+  addCarImages (state, val) {
+    state.sellCarForm = {
+      ...state.sellCarForm, // Keep the existing data
+      ...state.sellCarForm.images.push(val) // Update only the specified properties
+    }
+  },
+  addDisplayImages (state, val) {
+    state.sellCarForm = {
+      ...state.sellCarForm, // Keep the existing data
+      ...state.sellCarForm.displayedImages.push(val) // Update only the specified properties
+    }
+  },
+  removeImage (state, val) {
+    state.sellCarForm = {
+      ...state.sellCarForm, // Keep the existing data
+      ...state.sellCarForm.images.splice(val, 1), // Update only the specified properties
+      ...state.sellCarForm.displayedImages.splice(val, 1) // Update only the specified properties
+    }
+  },
   setFormProgress (state, val) {
     state.formProgress = val
   }
@@ -31,5 +53,14 @@ export const mutations = {
 export const actions = {
   setSellCarForm ({ commit }, newData) {
     commit('setSellCarForm', newData)
+  },
+  addImages ({ commit }, newData) {
+    commit('addCarImages', newData)
+  },
+  addDisplayImages ({ commit }, newData) {
+    commit('addDisplayImages', newData)
+  },
+  removeImage ({ commit }, newData) {
+    commit('removeImage', newData)
   }
 }
