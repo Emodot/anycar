@@ -2,7 +2,7 @@ export const state = () => ({
   sellCarForm: {
     make: '',
     model: '',
-    year_manufacture: '',
+    year_manufacture: 0,
     condition: '',
     transmission_type: '',
     interior_color: '',
@@ -12,9 +12,7 @@ export const state = () => ({
     asking_price: '',
     name: '',
     email: '',
-    phone: '',
-    images: [],
-    displayedImages: []
+    phone: ''
   },
   formProgress: {}
 })

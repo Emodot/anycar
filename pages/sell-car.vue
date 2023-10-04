@@ -18,7 +18,7 @@
           </div>
         </div>
         <div class="rhs">
-          <div class="rhs_inner">
+          <div v-if="!carAdded" class="rhs_inner">
             <SellCarOne v-if="formOne" :save-form="saveFormOne" @next="toFormTwo()" />
             <SellCarTwo v-if="formTwo" :save-form="saveFormTwo" @next="toFormThree()" />
             <SellCarThree v-if="formThree" :save-form="saveFormThree" @next="submit" />
@@ -41,7 +41,7 @@
               </div>
             </div>
           </div>
-          <SellCarDetailsAdded v-if="carAdded" />
+          <SellCarDetailsAdded v-else />
         </div>
       </div>
     </div>
@@ -120,8 +120,25 @@ export default {
       await this.$axios.$post('api/sell', formdata)
         .then((response) => {
           console.log(response)
+          this.carAdded = true
+          const clearedForm = {
+            make: '',
+            model: '',
+            year_manufacture: 0,
+            condition: '',
+            transmission_type: '',
+            interior_color: '',
+            exterior_color: '',
+            vin: '',
+            engine_type: '',
+            asking_price: '',
+            name: '',
+            email: '',
+            phone: ''
+          }
+          this.$store.commit('setSellCarForm', clearedForm)
           this.$toaster.showToast({
-            content: response.data?.message || 'Car Sale created successfully',
+            content: response.data?.message || 'Car Listing created successfully',
             state: 'success'
           })
         })

@@ -62,6 +62,7 @@
           :minimum-view="'year'"
           :maximum-view="'year'"
           :initial-view="'year'"
+          @input="getDate"
         />
         <!-- <div class="form-select">
           <select v-model="formOne.year_manufacture">
@@ -85,7 +86,7 @@
         <div class="form-select">
           <select v-model="formOne.condition">
             <option value="" disabled />
-            <option value="New">
+            <option value="excellent">
               New
             </option>
             <option value="Foreign Used">
@@ -107,11 +108,14 @@
         <div class="form-select">
           <select v-model="formOne.transmission_type">
             <option value="" disabled />
-            <option value="Automatic">
+            <option value="automatic">
               Automatic
             </option>
-            <option value="Manual">
+            <option value="manual">
               Manual
+            </option>
+            <option value="semiautomatic">
+              Semi-Automatic
             </option>
           </select>
           <span class="material-icons-outlined arrow">
@@ -142,7 +146,7 @@ export default {
       formOne: {
         make: '',
         model: '',
-        year_manufacture: '',
+        year_manufacture: 0,
         condition: '',
         transmission_type: ''
       }
@@ -154,6 +158,7 @@ export default {
       handler (val) {
         // console.log(val)
         if (val) {
+          console.log(this.formOne.year_manufacture)
           this.$store.dispatch('setSellCarForm', this.formOne)
           this.$emit('next')
         }
@@ -172,6 +177,18 @@ export default {
   methods: {
     customFormatter (date) {
       return moment(date).format('YYYY')
+    },
+    getDate (val) {
+      const dateString = val
+      const date = new Date(dateString)
+      this.formOne.year_manufacture = date.getFullYear()
+      console.log(this.formOne.year_manufacture)
+    },
+    formatDate (val) {
+      const dateString = val
+      const date = new Date(dateString)
+      this.formOne.year_manufacture = date.getFullYear()
+      // return year
     }
   }
 
