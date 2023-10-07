@@ -16,49 +16,90 @@
           </p>
         </div>
         <hr class="size_line">
-        <div class="filter_inner">
-          <p class="filter_name">
-            Make
-          </p>
-          <span class="material-icons-outlined arrow_right_icon">
-            chevron_right
-          </span>
+        <div class="filter_inner_ctn">
+          <div class="filter_inner" @click="toggleMakeTab()">
+            <p class="filter_name">
+              Make
+            </p>
+            <span class="material-icons-outlined arrow_right_icon">
+              chevron_right
+            </span>
+          </div>
+          <div v-if="openMakeTab" class="filter_input">
+            <input v-model="makeFilter" type="text">
+            <span class="material-icons-outlined search_icon" @click="filterMake()">
+              east
+            </span>
+          </div>
+          <hr class="size_line">
         </div>
-        <hr class="size_line">
-        <div class="filter_inner">
-          <p class="filter_name">
-            Year
-          </p>
-          <span class="material-icons-outlined arrow_right_icon">
-            chevron_right
-          </span>
+        <div class="filter_inner_ctn">
+          <div class="filter_inner" @click="toggleYearTab()">
+            <p class="filter_name">
+              Year
+            </p>
+            <span class="material-icons-outlined arrow_right_icon">
+              chevron_right
+            </span>
+          </div>
+          <div v-if="openYearTab" class="filter_input">
+            <input v-model="yearFilter" type="text">
+            <span class="material-icons-outlined search_icon" @click="filterYear()">
+              east
+            </span>
+          </div>
+          <hr class="size_line">
         </div>
-        <hr class="size_line">
-        <div class="filter_inner">
-          <p class="filter_name">
-            Price
-          </p>
-          <span class="material-icons-outlined arrow_right_icon">
-            chevron_right
-          </span>
+        <div class="filter_inner_ctn">
+          <div class="filter_inner" @click="togglePriceTab()">
+            <p class="filter_name">
+              Price
+            </p>
+            <span class="material-icons-outlined arrow_right_icon">
+              chevron_right
+            </span>
+          </div>
+          <div v-if="openPriceTab" class="filter_input">
+            <input v-model="priceFilter" type="text">
+            <span class="material-icons-outlined search_icon" @click="filterPrice()">
+              east
+            </span>
+          </div>
+          <hr class="size_line">
         </div>
-        <hr class="size_line">
-        <div class="filter_inner">
-          <p class="filter_name">
-            Mileage
-          </p>
-          <span class="material-icons-outlined arrow_right_icon">
-            chevron_right
-          </span>
+        <div class="filter_inner_ctn">
+          <div class="filter_inner" @click="toggleMileageTab()">
+            <p class="filter_name">
+              Mileage
+            </p>
+            <span class="material-icons-outlined arrow_right_icon">
+              chevron_right
+            </span>
+          </div>
+          <div v-if="openMileageTab" class="filter_input">
+            <input v-model="mileageFilter" type="text">
+            <span class="material-icons-outlined search_icon" @click="filterMileage()">
+              east
+            </span>
+          </div>
+          <hr class="size_line">
         </div>
-        <hr class="size_line">
-        <div class="filter_inner">
-          <p class="filter_name">
-            Type
-          </p>
-          <span class="material-icons-outlined arrow_right_icon">
-            chevron_right
-          </span>
+        <div class="filter_inner_ctn">
+          <div class="filter_inner" @click="toggleTypeTab()">
+            <p class="filter_name">
+              Type
+            </p>
+            <span class="material-icons-outlined arrow_right_icon">
+              chevron_right
+            </span>
+          </div>
+          <div v-if="openTypeTab" class="filter_input">
+            <input v-model="typeFilter" type="text">
+            <span class="material-icons-outlined search_icon" @click="filterType()">
+              east
+            </span>
+          </div>
+          <hr class="size_line">
         </div>
       </div>
     </div>
@@ -66,6 +107,7 @@
       <div class="product_list_ctn">
         <CarCard :card-details="data.docs" :img-height="11" />
       </div>
+      <Pagination :pagination-data="data" @changePage="change" />
     </div>
   </div>
 </template>
@@ -78,15 +120,18 @@ export default {
       default: () => {}
     }
   },
-  // async asyncData ({ $axios }) {
-  //   const carData = await $axios.$get('api/sell')
-  //   console.log(carData)
-  //   const allCars = carData.docs
-  //   return { allCars }
-  // },
   data () {
     return {
-      // allCars: this.carData,
+      makeFilter: '',
+      typeFilter: '',
+      yearFilter: '',
+      priceFilter: '',
+      mileageFilter: '',
+      openMakeTab: false,
+      openYearTab: false,
+      openPriceTab: false,
+      openMileageTab: false,
+      openTypeTab: false,
       cars: [
         {
           name: 'Ford Explore Limited SUV',
@@ -200,6 +245,63 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    change (val) {
+      this.$emit('changePage', val)
+    },
+    filterMake () {
+      const data = this.makeFilter
+      console.log(data)
+      this.$emit('filterMake', data)
+    },
+    filterYear () {
+      let data = ''
+      if (this.yearFilter !== '') {
+        data = parseInt(this.yearFilter)
+      }
+      console.log(data)
+      this.$emit('filterYear', data)
+    },
+    filterPrice () {
+      let data = ''
+      if (this.priceFilter !== '') {
+        data = parseInt(this.priceFilter)
+      }
+      console.log(data)
+      this.$emit('filterPrice', data)
+    },
+    filterMileage () {
+      let data = ''
+      if (this.mileageFilter !== '') {
+        data = parseInt(this.mileageFilter)
+      }
+      console.log(data)
+      this.$emit('filterMileage', data)
+    },
+    filterType () {
+      let data = ''
+      if (this.typeFilter !== '') {
+        data = parseInt(this.typeFilter)
+      }
+      console.log(data)
+      this.$emit('filterType', data)
+    },
+    toggleMakeTab () {
+      this.openMakeTab = !this.openMakeTab
+    },
+    toggleYearTab () {
+      this.openYearTab = !this.openYearTab
+    },
+    togglePriceTab () {
+      this.openPriceTab = !this.openPriceTab
+    },
+    toggleMileageTab () {
+      this.openMileageTab = !this.openMileageTab
+    },
+    toggleTypeTab () {
+      this.openTypeTab = !this.openTypeTab
+    }
   }
 }
 </script>
@@ -240,11 +342,17 @@ export default {
   font-size: 20px;
 }
 
+.filter_inner_ctn {
+  height: fit-content;
+  transition: 0.5s;
+}
+
 .filter_inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 15px 0;
+  cursor: pointer;
 }
 
 .filter_name {
@@ -270,5 +378,25 @@ export default {
 
 .rhs {
   flex-basis: 75%;
+}
+
+input {
+  background-color: transparent;
+  height: 40px;
+}
+
+.filter_input {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.search_icon {
+  color: #150a41bd;
+  font-size: 16px;
+  cursor: pointer;
 }
 </style>
