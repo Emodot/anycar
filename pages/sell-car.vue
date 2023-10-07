@@ -95,8 +95,8 @@ export default {
     async submit (data) {
       this.loading = true
       const form = this.$store.state.sellCarForm
-      const carImages = data.images
-      console.log(...carImages)
+      const carImages = data
+      console.log(carImages)
       // const images = carImages.map(function (item) {
       //   return item
       // })
@@ -114,9 +114,12 @@ export default {
       formdata.append('engineType', form.engine_type)
       formdata.append('name', form.name)
       formdata.append('phoneNumber', form.phone)
-      formdata.append('images', ...carImages)
+      for (let i = 0; i < carImages.length; i++) {
+        formdata.append('images', carImages[i])
+      }
       formdata.append('email', form.email)
       formdata.append('askingPrice', form.asking_price)
+      console.log(formdata)
       await this.$axios.$post('api/sell', formdata)
         .then((response) => {
           console.log(response)

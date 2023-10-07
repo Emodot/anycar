@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="rhs">
-      <h2>Ford Explore Limited SUV</h2>
+      <h2>{{ data.make }}</h2>
       <div class="car_options">
         <div class="option">
           <p>{{ data.yearOfManufacture }}</p>
