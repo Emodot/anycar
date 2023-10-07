@@ -17,7 +17,7 @@
 <script>
 export default {
   async asyncData ({ $axios }) {
-    const cars = await $axios.$get('api/sell')
+    const cars = await $axios.$get('api/sell?pageNumber=2')
     console.log(cars)
     return { cars }
   }

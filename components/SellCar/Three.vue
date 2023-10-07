@@ -78,9 +78,10 @@ export default {
       formThree: {
         name: '',
         email: '',
-        phone: '',
-        images: []
+        phone: ''
+        // images: []
       },
+      selectedImages: [],
       displayedImages: []
     }
   },
@@ -91,7 +92,7 @@ export default {
         // console.log(val)
         if (val) {
           this.$store.dispatch('setSellCarForm', this.formThree)
-          this.$emit('next', this.formThree)
+          this.$emit('next', this.selectedImages)
         }
       }
     }
@@ -112,7 +113,7 @@ export default {
     selectImgFile (event) {
       const fileId = event.target.files[0]
       // console.log(fileId)
-      this.formThree.images.push(fileId)
+      this.selectedImages.push(fileId)
       const fileInput = this.$refs.fileInput
       const imgFile = fileInput.files
       if (imgFile && imgFile[0]) {
@@ -127,9 +128,9 @@ export default {
       // console.log(val)
       const index = val
       this.displayedImages.splice(index, 1)
-      this.formThree.images.splice(index, 1)
+      this.selectedImages.splice(index, 1)
       // console.log(this.displayedImages)
-      // console.log(this.formThree.images)
+      // console.log(this.selectedImages)
     }
   }
 }
