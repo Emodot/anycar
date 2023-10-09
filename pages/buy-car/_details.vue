@@ -15,8 +15,8 @@
       <CarDetails :data="carsDetails.docs" @requestInspection="inspectionForm = true" />
       <OtherCarsYouMayLike :data="limitedCars" />
     </div>
-    <ModalsScheduleInspection v-if="inspectionForm" @close-modal="inspectionForm = false" @submit="submit" />
-    <ModalsSuccess v-if="successModal" @close-modal="successModal = false" />
+    <ModalsScheduleInspection v-if="inspectionForm" :car-id="carsDetails.docs._id" @close-modal="inspectionForm = false" @scheduleCompleted="scheduleCompleted" />
+    <ModalsSuccess v-if="successModal" :date-time="dateTime" @close-modal="successModal = false" />
   </div>
 </template>
 
@@ -39,12 +39,14 @@ export default {
   },
   data () {
     return {
+      dateTime: {},
       inspectionForm: false,
       successModal: false
     }
   },
   methods: {
-    submit () {
+    scheduleCompleted (val) {
+      this.dateTime = val
       this.inspectionForm = false
       this.successModal = true
     }

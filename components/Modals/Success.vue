@@ -14,13 +14,13 @@
           <img src="~assets/icons/success.gif" alt="">
         </div>
         <p class="modal_text">
-          Your inspection has been scheduled successfully for 4th September 2023 for 6pm, more details has been sent to your email someone from our support team will contact you
+          Your inspection has been scheduled successfully for {{ dateTime.date }} for {{ formatTime(dateTime.time) }}, more details has been sent to your email someone from our support team will contact you
         </p>
         <div class="bottom_btn">
           <button class="global_btn compare_btn">
             My Dashboard
           </button>
-          <button class="global_btn" @click="$emit('requestInspection')">
+          <button class="global_btn" @click="$emit('close-modal')">
             Ok, Close
           </button>
         </div>
@@ -31,17 +31,41 @@
 
 <script>
 export default {
+  props: {
+    dateTime: {
+      type: Object,
+      default: () => {}
+    }
+  },
   data () {
     return {
       productList: [],
       total: 0
     }
   },
-  // created () {
-  //   this.productList = this.$store.state.cartList
-  //   this.calculateTotal()
+  // watch: {
+  //   dateTime: {
+  //     immediate: true,
+  //     handler (val) {
+  //       console.log(val)
+  //       this.formatTime()
+  //     }
+  //   }
   // },
   methods: {
+    formatTime (date) {
+      const [hours, minutes] = date.split(':')
+
+      const hoursInt = parseInt(hours, 10)
+
+      const period = hoursInt >= 12 ? 'PM' : 'AM'
+
+      const hours12 = hoursInt % 12 || 12
+
+      // Format the time as AM/PM
+      const ampmTime = `${hours12}:${minutes} ${period}`
+      return ampmTime
+    }
   }
 }
 </script>
