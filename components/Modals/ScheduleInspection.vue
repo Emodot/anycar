@@ -15,43 +15,46 @@
             <p class="label">
               First Name
             </p>
-            <input class="form_input" type="text">
+            <input v-model="firstName" class="form_input" type="text">
           </div>
           <div class="input_flex_item">
             <p class="label">
               Last Name
             </p>
-            <input class="form_input" type="text">
+            <input v-model="lastName" class="form_input" type="text">
           </div>
         </div>
         <div class="input_ctn">
           <p class="label">
             Phone Number
           </p>
-          <input class="form_input" type="number">
+          <input v-model="phoneNumber" class="form_input" type="number">
         </div>
         <div class="input_ctn">
           <p class="label">
             Email Address
           </p>
-          <input class="form_input" type="email">
+          <input v-model="email" class="form_input" type="email">
         </div>
         <div class="input_flex">
           <div class="input_flex_item">
             <p class="label">
               Proposed Inspection Date
             </p>
-            <input class="form_input" type="date">
+            <input v-model="proposedInspectionDate" class="form_input" type="date">
           </div>
           <div class="input_flex_item">
             <p class="label">
               Proposed Inspection Time
             </p>
-            <input class="form_input" type="time">
+            <input v-model="proposedInspectionTime" class="form_input" type="time">
           </div>
         </div>
-        <button class="global_btn" @click="$emit('submit')">
+        <button v-if="!loading" class="global_btn" @click="scheduleInspection()">
           Schedule Inspection
+        </button>
+        <button v-else class="global_btn" disabled>
+          <Loader class="come-down" />
         </button>
       </div>
     </div>
@@ -60,9 +63,22 @@
 
 <script>
 export default {
+  props: {
+    carId: {
+      type: String,
+      default: () => {}
+    }
+  },
   data () {
     return {
       productList: [],
+      firstName: '',
+      lastName: '',
+      phoneNumber: '',
+      email: '',
+      proposedInspectionDate: '',
+      proposedInspectionTime: '',
+      loading: false,
       total: 0
     }
   },
@@ -71,6 +87,46 @@ export default {
   //   this.calculateTotal()
   // },
   methods: {
+    async scheduleInspection () {
+      this.loading = true
+      if (this.phoneNumber.length > 10) {
+        this.phoneNumber = this.phoneNumber.substring(1)
+      }
+      const convertedDate = new Date(this.proposedInspectionDate)
+      const displayDate = new Date(this.proposedInspectionDate).toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' })
+      const dateTime = {
+        date: displayDate,
+        time: this.proposedInspectionTime
+      }
+      console.log(displayDate)
+      const data = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        phoneNumber: this.phoneNumber,
+        email: this.email,
+        proposedInspectionDate: convertedDate.toISOString(),
+        proposedInspectionTime: this.proposedInspectionTime
+      }
+      console.log(data)
+      await this.$axios.$post(`api/buy/${this.carId}`, data)
+        .then((response) => {
+          console.log(response)
+          this.$emit('scheduleCompleted', dateTime)
+        })
+        .catch((_err) => {
+          const errorMsg = _err?.response?.data?.error || _err?.message
+          const feedback = {
+            content:
+              errorMsg || 'Oops, something went wrong, please try again later',
+            state: 'error'
+          }
+          console.log(feedback)
+          this.$toaster.showToast(feedback)
+        })
+        .finally(() => {
+          this.loading = false
+        })
+    }
   }
 }
 </script>
