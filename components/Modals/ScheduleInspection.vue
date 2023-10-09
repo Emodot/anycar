@@ -186,12 +186,6 @@ export default {
   margin-top: 10px;
 }
 
-.input_flex {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
 .input_ctn {
   width: 100%;
   margin-bottom: 20px;
@@ -219,15 +213,11 @@ export default {
 }
 
 @media only screen and (max-width: 500px) {
-
   .modal {
     width: 90%;
+    padding: 2rem;
+    height: 80vh;
   }
-
-  .modal_content {
-    padding: 20px 10px;
-  }
-
 }
 
 </style>

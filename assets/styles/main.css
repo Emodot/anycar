@@ -116,6 +116,7 @@ h1 {
 	border: 1px solid var(--primary-color);
   background-color: #fff;
   color: var(--primary-color);
+	white-space: nowrap;
 }
 
 .form-select {
@@ -185,6 +186,13 @@ h1 {
 	.product_list_ctn > .card_list > .card_ctn {
     width: 100% !important;
   }
+	.input_flex {
+    flex-direction: column;
+		margin-bottom: 0;
+	}
+	.input_flex_item {
+		margin-bottom: 20px;
+	}
 }
 
 

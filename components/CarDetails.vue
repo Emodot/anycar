@@ -153,6 +153,7 @@ export default {
 
 .car_options {
   display: flex;
+  flex-wrap: wrap;
   margin: 20px 0 40px;
 }
 
@@ -164,6 +165,7 @@ export default {
   background-color: #EEF2F4;
   border-radius: 4px;
   margin-right: 15px;
+  margin-top: 10px;
 }
 
 .option p {
@@ -209,5 +211,41 @@ export default {
   background-color: #fff;
   color: var(--primary-color);
 } */
+@media only screen and (max-width: 1300px) {
+}
 
+@media only screen and (max-width: 1200px) {
+}
+@media only screen and (max-width: 900px) {
+  .lhs {
+    flex-basis: 42%;
+  }
+  .rhs {
+    flex-basis: 45%;
+  }
+  .main_image {
+    height: 18rem;
+  }
+  .inner_images div {
+    height: 7rem;
+  }
+  .global_btn {
+    margin-left: 10px;
+  }
+  .table_ctn {
+    padding: 30px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .details {
+    flex-direction: column;
+  }
+
+  .lhs {
+    margin-bottom: 30px;
+  }
+  .table_ctn {
+    padding: 20px;
+  }
+}
 </style>
