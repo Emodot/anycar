@@ -275,4 +275,51 @@ export default {
   opacity: 0.3;
   cursor: not-allowed;
 }
+
+@media only screen and (max-width: 1300px) {
+}
+
+@media only screen and (max-width: 1200px) {
+  .inner {
+    width: 90%;
+  }
+  .lhs {
+    flex-basis: 45%;
+  }
+  .rhs {
+    flex-basis: 50%;
+    display: flex;
+    justify-content: end;
+  }
+  .rhs_inner {
+    width: 90%;
+  }
+  .progress_bar {
+    flex-basis: 100%;
+    margin-bottom: 30px;
+  }
+  .bottom_section {
+    padding-top: 10px;
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .lhs {
+    flex-basis: 40%;
+  }
+  .rhs {
+    flex-basis: 55%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .lhs {
+    display: none;
+  }
+  .rhs {
+    flex-basis: 100%;
+  }
+  .rhs_inner {
+    width: 100%;
+  }
+}
 </style>
