@@ -99,7 +99,8 @@ h1, p {
 }
 @media only screen and (max-width: 500px) {
   .lhs {
-    flex-basis: 90%;
+    flex-basis: 100%;
+    text-align: center;
   }
   .rhs {
     display: none;
@@ -108,7 +109,11 @@ h1, p {
     background-position: center;
   }
   .do_more_ctn {
-    padding: 3rem;
+    padding: 2.5rem;
+  }
+
+  .global_btn {
+    margin: 40px auto 0;
   }
 }
 </style>

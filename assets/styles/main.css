@@ -175,10 +175,16 @@ h1 {
 		font-size: 26px;
 		line-height: 36px;
 	}
+	.product_list_ctn > .card_list > .card_ctn {
+    width: 48% !important;
+  }
 }
 @media only screen and (max-width: 900px) {
 }
 @media only screen and (max-width: 500px) {
+	.product_list_ctn > .card_list > .card_ctn {
+    width: 100% !important;
+  }
 }
 
 

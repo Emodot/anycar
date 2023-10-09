@@ -198,6 +198,10 @@ a:hover {
   font-size: 18px;
 }
 
+.account_btn {
+  margin: 30px 0 30px 20px;
+}
+
 @media only screen and (max-width: 500px) {
   .mobile-header {
     height: 11vh;

@@ -82,7 +82,7 @@ export default {
 }
 @media only screen and (max-width: 500px) {
   .hero_ctn {
-    height: 60vh;
+    height: 70vh;
   }
 }
 </style>

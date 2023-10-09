@@ -116,14 +116,32 @@ export default {
   }
 }
 @media only screen and (max-width: 500px) {
+  .lhs {
+    flex-basis: 100%;
+    text-align: center;
+  }
+  .lhs h1 {
+    text-align: center;
+    width: 100%;
+  }
   .rhs {
     display: none;
   }
   .add_car_section {
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  .add_car_section {
     width: 100%;
   }
-  .lhs h1 {
-    width: 80%;
+  .add_car_btn {
+    padding: 15px 10px;
+    margin-right: 10px;
+  }
+
+  .add_car_btn p {
+    margin: 0 5px;
+    font-size: 14px;
   }
 }
 </style>
