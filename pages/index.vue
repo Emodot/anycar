@@ -65,13 +65,24 @@ export default {
   padding-bottom: 7rem;
 }
 
+@media only screen and (max-width: 1300px) {
+}
+
 @media only screen and (max-width: 1200px) {
-  .hero_ctn {
+  .body_ctn {
     width: 90%;
+    margin: auto;
+    padding-bottom: 7rem;
   }
 }
 @media only screen and (max-width: 900px) {
+  .hero_ctn {
+    height: 50vh;
+  }
 }
 @media only screen and (max-width: 500px) {
+  .hero_ctn {
+    height: 60vh;
+  }
 }
 </style>

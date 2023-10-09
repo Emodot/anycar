@@ -164,5 +164,11 @@ export default {
   }
 }
 @media only screen and (max-width: 500px) {
+  /* .card_list {
+    justify-content: center;
+  } */
+  .card_ctn {
+    width: 100%;
+  }
 }
 </style>

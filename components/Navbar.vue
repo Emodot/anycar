@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="navbar_rhs">
-        <div class="cart_ctn" @click="$emit('open-cart')">
+        <div class="account_btn">
           <button class="global_btn">
             My Account
           </button>
@@ -127,7 +127,7 @@ export default {
   cursor: pointer;
 }
 
-.cart_ctn {
+.account_btn {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -163,17 +163,20 @@ export default {
 }
 
 @media only screen and (max-width: 1200px) {
-  .navbar_lhs {
+  /* .navbar_lhs {
     flex-basis: 30%;
-  }
+  } */
   .logo {
-    width: 100%;
+    width: 60%;
   }
   .menu_list {
-    width: 70%;
+    width: 80%;
   }
 }
 @media only screen and (max-width: 900px) {
+  .logo {
+    width: 80%;
+  }
   .navbar_inner {
     width: 90%;
   }
@@ -190,12 +193,9 @@ export default {
   .navbar_lhs {
     flex-basis: 40%;
   }
+  .account_btn {
+    display: none;
+  }
 }
 
-@media only screen and (max-width: 1200px) {
-}
-@media only screen and (max-width: 900px) {
-}
-@media only screen and (max-width: 500px) {
-}
 </style>

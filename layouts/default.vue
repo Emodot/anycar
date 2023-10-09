@@ -4,12 +4,12 @@
       @open-cart="openCart = true"
       @showMobileMenu="showMobileMenu = true"
     />
-    <!-- <div class="mobile-menu">
+    <div class="mobile-menu">
       <MobileMenu
         v-show="showMobileMenu"
         @closeMobileMenu="showMobileMenu = false"
       />
-    </div> -->
+    </div>
     <div class="main_content">
       <Nuxt />
     </div>
