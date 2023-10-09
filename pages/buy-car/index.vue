@@ -24,11 +24,6 @@
 
 <script>
 export default {
-  // async asyncData ({ $axios }) {
-  //   const cars = await $axios.$get('api/sell?pageNumber=1')
-  //   // console.log(cars)
-  //   return { cars }
-  // },
   data () {
     return {
       cars: {},
