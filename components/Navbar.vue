@@ -190,6 +190,9 @@ export default {
   }
 }
 @media only screen and (max-width: 500px) {
+  .navbar_inner {
+    width: 90%;
+  }
   .navbar_lhs {
     flex-basis: 40%;
   }

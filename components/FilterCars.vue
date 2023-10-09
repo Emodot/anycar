@@ -399,4 +399,45 @@ input {
   font-size: 16px;
   cursor: pointer;
 }
+
+@media only screen and (max-width: 1300px) {
+}
+
+@media only screen and (max-width: 1200px) {
+  .filter_title {
+    white-space: nowrap;
+  }
+  .lhs {
+    flex-basis: 25%;
+  }
+
+  .rhs {
+    flex-basis: 70%;
+  }
+  /* .product_list_ctn > .card_list > .card_ctn {
+    width: 48% !important;
+  } */
+}
+@media only screen and (max-width: 900px) {
+  .lhs {
+    flex-basis: 30%;
+  }
+
+  .rhs {
+    flex-basis: 65%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .hero_ctn {
+    height: 70vh;
+  }
+  .lhs {
+    flex-basis: 30%;
+    display: none;
+  }
+
+  .rhs {
+    flex-basis: 100%;
+  }
+}
 </style>

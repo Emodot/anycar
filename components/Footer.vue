@@ -184,7 +184,7 @@ export default {
   }
   .logo {
     margin-right: 5rem;
-    width: 80%;
+    width: 50%;
   }
   .footer_inner {
     flex-wrap: wrap;
@@ -198,10 +198,5 @@ export default {
   .menu_list {
     width: 100%;
   }
-
-.social_ctn svg {
-  width: 14px;
-  height: 14px;
-}
 }
 </style>
