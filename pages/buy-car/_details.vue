@@ -75,4 +75,19 @@ export default {
 .search_side {
   flex-basis: 30%;
 }
+@media only screen and (max-width: 1300px) {
+}
+
+@media only screen and (max-width: 1200px) {
+  .inner {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 900px) {
+}
+@media only screen and (max-width: 500px) {
+  .search_side {
+    flex-basis: 70%;
+  }
+}
 </style>

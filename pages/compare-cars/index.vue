@@ -251,4 +251,30 @@ export default {
   justify-content: space-between;
   margin-top: 40px;
 }
+
+@media only screen and (max-width: 1300px) {
+}
+
+@media only screen and (max-width: 1200px) {
+  .inner {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .details_ctn {
+    padding: 4rem;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .car_name {
+    font-size: 18px;
+  }
+  .details_ctn {
+    width: 100%;
+    padding: 2rem 1.5rem;
+  }
+  .global_btn_2 {
+    font-size: 11px;
+  }
+}
 </style>

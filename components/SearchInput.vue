@@ -17,6 +17,7 @@ export default {
 .search_input {
   width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   background-color: #FFFFFC;
   padding: 5px 20px 5px 40px;
@@ -26,5 +27,14 @@ export default {
 
 .search_input input {
   width: 100%;
+}
+
+@media only screen and (max-width: 500px) {
+.search_input input {
+  width: 85%;
+}
+  .search_input {
+    padding: 5px 15px;
+  }
 }
 </style>
