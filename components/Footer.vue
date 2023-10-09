@@ -158,22 +158,46 @@ export default {
   padding-bottom: 3rem;
 }
 
+@media only screen and (max-width: 1200px) {
+  .footer_ctn {
+    width: 90%;
+  }
+}
 @media only screen and (max-width: 900px) {
-  .footer_middle {
-    display: none;
+  .footer_ctn {
+    padding: 4rem;
+  }
+  .sub_title {
+    width: 90%;
+  }
+  .logo {
+    width: 50%;
   }
 }
 @media only screen and (max-width: 500px) {
+  .footer_ctn {
+    padding: 2rem;
+  }
   .footer_lhs {
-    flex-basis: 80%;
+    flex-basis: 100%;
+    margin-bottom: 20px;
   }
   .logo {
     margin-right: 5rem;
     width: 80%;
   }
+  .footer_inner {
+    flex-wrap: wrap;
+  }
+  .footer_middle {
+    flex-basis: 50%;
+  }
   .footer_rhs {
-  flex-basis: 20%;
-}
+    flex-basis: 50%;
+  }
+  .menu_list {
+    width: 100%;
+  }
 
 .social_ctn svg {
   width: 14px;

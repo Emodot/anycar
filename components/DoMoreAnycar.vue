@@ -80,4 +80,35 @@ h1, p {
   width: 100%;
   border-radius: 30px;
 }
+
+@media only screen and (max-width: 1300px) {
+}
+
+@media only screen and (max-width: 1200px) {
+  .lhs {
+    flex-basis: 50%;
+  }
+  .do_more_ctn {
+    background-position: left;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .do_more_ctn {
+    padding: 4rem;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .lhs {
+    flex-basis: 90%;
+  }
+  .rhs {
+    display: none;
+  }
+  .do_more_ctn {
+    background-position: center;
+  }
+  .do_more_ctn {
+    padding: 3rem;
+  }
+}
 </style>

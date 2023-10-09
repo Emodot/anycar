@@ -101,4 +101,29 @@ export default {
   width: 100%;
   border-radius: 30px;
 }
+
+@media only screen and (max-width: 1300px) {
+}
+
+@media only screen and (max-width: 1200px) {
+  .rhs_img {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .add_car_btn p {
+    white-space: nowrap;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .rhs {
+    display: none;
+  }
+  .add_car_section {
+    width: 100%;
+  }
+  .lhs h1 {
+    width: 80%;
+  }
+}
 </style>

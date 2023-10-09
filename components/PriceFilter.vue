@@ -155,4 +155,51 @@ export default {
 .price {
   margin: 2px 0 10px;
 }
+
+@media only screen and (max-width: 1300px) {
+}
+
+@media only screen and (max-width: 1200px) {
+  .box_ctn {
+    width: 70%;
+  }
+  .range_slider {
+    width: 60%;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .box_ctn {
+    width: 80%;
+  }
+  .range_slider {
+    width: 70%;
+  }
+  .inner {
+    width: 85%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .box_ctn {
+    width: 95%;
+  }
+  .range_slider {
+    width: 90%;
+  }
+  .bottom {
+    flex-direction: column;
+  }
+
+  .rhs {
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  .price {
+    margin: 10px 0;
+  }
+
+  .global_btn {
+    width: 80%;
+  }
+}
 </style>
