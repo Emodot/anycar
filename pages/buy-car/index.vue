@@ -114,7 +114,7 @@ export default {
       maxMileage,
       type
     ) {
-      console.log(type)
+      // console.log(type)
       this.$axios.$get(`api/sell?pageNumber=${currentPage}&pageSize=9&make=${make}&year=${year}&maxPrice=${maxPrice}&maxMileage=${maxMileage}&type=${type}`)
         .then((response) => {
           console.log(response)

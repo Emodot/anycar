@@ -65,7 +65,30 @@ export default {
       loading: false
     }
   },
+  // created () {
+  //   this.getMake()
+  // },
   methods: {
+    // getMake () {
+    //   this.$axios.$get(`api/sell?pageNumber=${currentPage}&pageSize=9&make=${make}&year=${year}&maxPrice=${maxPrice}&maxMileage=${maxMileage}&type=${type}`)
+    //     .then((response) => {
+    //       console.log(response)
+    //       this.cars = response
+    //     })
+    //     .catch((_err) => {
+    //       const errorMsg = _err?.response?.data?.error || _err?.message
+    //       const feedback = {
+    //         content:
+    //           errorMsg || 'Oops, something went wrong, please try again later',
+    //         state: 'error'
+    //       }
+    //       console.log(feedback)
+    //       this.$toaster.showToast(feedback)
+    //     })
+    //     .finally(() => {
+    //       this.loading = false
+    //     })
+    // },
     submitForm () {
       if (this.formOne) {
         this.saveFormOne = true
@@ -289,7 +312,7 @@ export default {
   .rhs {
     flex-basis: 50%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
   .rhs_inner {
     width: 90%;
