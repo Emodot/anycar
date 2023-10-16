@@ -19,7 +19,7 @@
         </div>
         <div class="rhs">
           <div v-if="!carAdded" class="rhs_inner">
-            <SellCarOne v-if="formOne" :save-form="saveFormOne" @next="toFormTwo()" />
+            <SellCarOne v-if="formOne" :save-form="saveFormOne" :car-makes="carMakes" @next="toFormTwo()" />
             <SellCarTwo v-if="formTwo" :save-form="saveFormTwo" @next="toFormThree()" />
             <SellCarThree v-if="formThree" :save-form="saveFormThree" @next="submit" />
             <div class="bottom_section">
@@ -52,6 +52,7 @@
 export default {
   data () {
     return {
+      carMakes: [],
       saveFormOne: false,
       saveFormTwo: false,
       saveFormThree: false,
@@ -65,30 +66,30 @@ export default {
       loading: false
     }
   },
-  // created () {
-  //   this.getMake()
-  // },
+  created () {
+    this.getMake()
+  },
   methods: {
-    // getMake () {
-    //   this.$axios.$get(`api/sell?pageNumber=${currentPage}&pageSize=9&make=${make}&year=${year}&maxPrice=${maxPrice}&maxMileage=${maxMileage}&type=${type}`)
-    //     .then((response) => {
-    //       console.log(response)
-    //       this.cars = response
-    //     })
-    //     .catch((_err) => {
-    //       const errorMsg = _err?.response?.data?.error || _err?.message
-    //       const feedback = {
-    //         content:
-    //           errorMsg || 'Oops, something went wrong, please try again later',
-    //         state: 'error'
-    //       }
-    //       console.log(feedback)
-    //       this.$toaster.showToast(feedback)
-    //     })
-    //     .finally(() => {
-    //       this.loading = false
-    //     })
-    // },
+    getMake () {
+      this.$axios.$get('api/make')
+        .then((response) => {
+          console.log(response)
+          this.carMakes = response.docs.data
+        })
+        .catch((_err) => {
+          const errorMsg = _err?.response?.data?.error || _err?.message
+          const feedback = {
+            content:
+              errorMsg || 'Oops, something went wrong, please try again later',
+            state: 'error'
+          }
+          console.log(feedback)
+          this.$toaster.showToast(feedback)
+        })
+        .finally(() => {
+          this.loading = false
+        })
+    },
     submitForm () {
       if (this.formOne) {
         this.saveFormOne = true
@@ -120,15 +121,11 @@ export default {
       const form = this.$store.state.sellCarForm
       const carImages = data
       console.log(carImages)
-      // const images = carImages.map(function (item) {
-      //   return item
-      // })
-
-      // console.log(...images)
+      const formattedYear = new Date(form.year_manufacture).getFullYear()
       const formdata = new FormData()
       formdata.append('make', form.make)
       formdata.append('model', form.model)
-      formdata.append('yearOfManufacture', form.year_manufacture)
+      formdata.append('yearOfManufacture', formattedYear)
       formdata.append('condition', form.condition)
       formdata.append('transmissionType', form.transmission_type)
       formdata.append('interiorColor', form.interior_color)

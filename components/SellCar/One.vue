@@ -1,36 +1,55 @@
 <template>
-  <div class="form_container">
+  <div class="form_container" @click="showItemList = false">
     <div class="form_inner">
-      <div class="input_ctn">
+      <div class="input_ctn" @click.stop>
         <p class="label">
           Make
         </p>
-        <div class="form-select">
+        <div class="form_input custom_input_box" @click="showItemList = true">
+          <p>{{ formOne.make }}</p>
+          <span class="material-icons-outlined">
+            expand_more
+          </span>
+        </div>
+        <div v-if="showItemList" class="list_ctn" @click.stop>
+          <div class="item_list_ctn">
+            <div
+              v-for="(make, index) in carMakes"
+              :key="index"
+              class="item_list"
+              @click="selectMake(make)"
+            >
+              <p class="item_name">
+                {{ make.name || '--' }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="form-select">
           <select v-model="formOne.make">
             <option value="" disabled />
-            <option value="Toyota">
-              Toyota
-            </option>
-            <option value="Lexus">
-              Lexus
-            </option>
-            <option value="Honda">
-              Honda
-            </option>
-            <option value="Acura">
-              Acura
-            </option>
-            <option value="Range Rover">
-              Range Rover
-            </option>
-            <option value="Nissan">
-              Nissan
+            <option v-for="(make, index) in carMakes" :key="index" :value="make.name" @input="getMakeID">
+              {{ make.name }}
             </option>
           </select>
           <span class="material-icons-outlined arrow">
             expand_more
           </span>
-        </div>
+        </div> -->
+      </div>
+      <div class="input_ctn">
+        <p class="label">
+          Year of Manufacture
+        </p>
+        <datepicker
+          :value="formOne.year_manufacture"
+          :format="'yyyy'"
+          class="datePicker"
+          :minimum-view="'year'"
+          :maximum-view="'year'"
+          :initial-view="'year'"
+          @input="getDate"
+        />
       </div>
       <div class="input_ctn">
         <p class="label">
@@ -39,45 +58,14 @@
         <div class="form-select">
           <select v-model="formOne.model">
             <option value="" disabled />
-            <option value="1">
-              Option 1
-            </option>
-            <option value="2">
-              Option 2
+            <option v-for="(models, index) in carModels" :key="index" :value="models.name">
+              {{ models.name }}
             </option>
           </select>
           <span class="material-icons-outlined arrow">
             expand_more
           </span>
         </div>
-      </div>
-      <div class="input_ctn">
-        <p class="label">
-          Year of Manufacture
-        </p>
-        <datepicker
-          v-model="formOne.year_manufacture"
-          :format="customFormatter"
-          class="datePicker"
-          :minimum-view="'year'"
-          :maximum-view="'year'"
-          :initial-view="'year'"
-          @input="getDate"
-        />
-        <!-- <div class="form-select">
-          <select v-model="formOne.year_manufacture">
-            <option value="" disabled />
-            <option value="1">
-              Option 1
-            </option>
-            <option value="2">
-              Option 2
-            </option>
-          </select>
-          <span class="material-icons-outlined arrow">
-            expand_more
-          </span>
-        </div> -->
       </div>
       <div class="input_ctn">
         <p class="label">
@@ -138,12 +126,19 @@ export default {
     saveForm: {
       type: Boolean,
       default: () => false
+    },
+    carMakes: {
+      type: Array,
+      default: () => []
     }
   },
   data () {
     return {
       // customFormatter: 'YYYY',
+      showItemList: false,
+      carModels: [],
       formOne: {
+        makeId: 0,
         make: '',
         model: '',
         year_manufacture: 0,
@@ -169,30 +164,87 @@ export default {
     const formData = this.$store.state.sellCarForm
     console.log(formData)
     this.formOne.make = formData.make
+    this.formOne.makeId = formData.makeId
     this.formOne.model = formData.model
     this.formOne.year_manufacture = formData.year_manufacture
     this.formOne.condition = formData.condition
     this.formOne.transmission_type = formData.transmission_type
+    this.getModels(this.formOne.year_manufacture)
   },
   methods: {
+    selectMake (data) {
+      console.log(data)
+      this.formOne.make = data.name
+      this.formOne.makeId = data.id
+      this.showItemList = false
+    },
+    getModels (year) {
+      this.$axios.$get(`api/model?year=${year}&make_id=${this.formOne.makeId}`)
+        .then((response) => {
+          console.log(response)
+          this.carModels = response.data.data
+        })
+        .catch((_err) => {
+          console.log(_err)
+          const errorMsg = _err?.response?.data?.error || _err?.message
+          const feedback = {
+            content:
+              errorMsg || 'Oops, something went wrong, please try again later',
+            state: 'error'
+          }
+          console.log(feedback)
+          this.$toaster.showToast(feedback)
+        })
+        .finally(() => {
+          this.loading = false
+        })
+    },
     customFormatter (date) {
       return moment(date).format('YYYY')
     },
     getDate (val) {
+      // console.log(val)
       const dateString = val
-      const date = new Date(dateString)
-      this.formOne.year_manufacture = date.getFullYear()
-      console.log(this.formOne.year_manufacture)
-    },
-    formatDate (val) {
-      const dateString = val
-      const date = new Date(dateString)
-      this.formOne.year_manufacture = date.getFullYear()
-      // return year
+      const date = new Date(dateString).getFullYear()
+      // this.formOne.year_manufacture = date
+      console.log(date)
+      this.getModels(date)
     }
   }
 
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.custom_input_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.list_ctn {
+  position: relative;
+}
+.item_list_ctn {
+  border: 1px solid #00000039;
+  max-height: 40rem;
+  width: 100%;
+  overflow: auto;
+  border-radius: 5px;
+  background-color: #fff;
+  /* margin-top: 30px; */
+  position: absolute;
+  top: 0;
+  z-index: 5;
+  /* left: 40%; */
+}
+.item_list {
+  /* height: 50px; */
+  border-bottom: 1px solid #00000011;
+  /* display: flex;
+  align-items: center; */
+  cursor: pointer;
+  padding: 15px 0 15px 20px;
+  background-color: #fff;
+}
+</style>

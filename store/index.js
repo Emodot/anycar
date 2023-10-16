@@ -1,5 +1,6 @@
 export const state = () => ({
   sellCarForm: {
+    makeId: 0,
     make: '',
     model: '',
     year_manufacture: 0,
