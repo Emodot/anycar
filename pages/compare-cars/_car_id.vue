@@ -12,14 +12,15 @@
         </div>
       </div>
       <div v-if="carsSelected" class="cars_ctn">
-        <div class="car_1">
-          <img src="~assets/images/fisrt_car.jpg" alt="">
+        <div v-if="!loading" class="car_1">
+          <img :src="carOne.images[0].urls" alt="">
           <div class="car_content">
             <p class="car_name">
-              2008 Lexus ES 350
+              <!-- 2008 Lexus ES 350 -->
+              {{ carOne.yearOfManufacture }} {{ carOne.make }} {{ carOne.model }}
             </p>
             <p class="car_amount">
-              N4,500,000
+              {{ carOne.askingPrice }}
             </p>
             <p class="change_car">
               Change Car
@@ -148,7 +149,44 @@
 export default {
   data () {
     return {
-      carsSelected: true
+      carOne: {},
+      carTwo: {},
+      carsSelected: true,
+      loading: false
+    }
+  },
+  created () {
+    this.getCarDetails()
+  },
+  methods: {
+    getCarDetails () {
+      this.loading = true
+      const carId = this.$route.params.car_id
+      this.$axios.$get(`api/sell/${carId}`)
+        .then((response) => {
+          console.log(response)
+          if (Object.keys(this.carOne).length) {
+            this.carTwo = response.docs
+            console.log('Not Working')
+          } else {
+            this.carOne = response.docs
+            console.log('Working')
+          }
+          this.cars = response
+        })
+        .catch((_err) => {
+          const errorMsg = _err?.response?.data?.error || _err?.message
+          const feedback = {
+            content:
+              errorMsg || 'Oops, something went wrong, please try again later',
+            state: 'error'
+          }
+          console.log(feedback)
+          this.$toaster.showToast(feedback)
+        })
+        .finally(() => {
+          this.loading = false
+        })
     }
   }
 }

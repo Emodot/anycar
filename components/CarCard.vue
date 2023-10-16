@@ -51,9 +51,13 @@ export default {
   },
   methods: {
     selectProduct (card) {
+      if (this.$route.name === 'compare-cars-select-car') {
+        this.$router.push(`/compare-cars/${card._id}`)
+      } else {
+        this.$router.push(`/buy-car/${card._id}`)
+      }
       // console.log(card)
       // this.$store.commit('setselectedProduct', card)
-      this.$router.push(`/buy-car/${card._id}`)
     }
   }
 
