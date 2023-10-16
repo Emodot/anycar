@@ -32,6 +32,7 @@
               type="file"
               name="image"
               accept="image/jpeg, image/png"
+              multiple
               @input="selectImgFile"
             >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,7 +46,7 @@
               </defs>
             </svg>
           </div>
-          <div v-for="img in displayedImages" :key="img.index" class="car_images" :style="{ backgroundImage: `url(${img})` }">
+          <div v-for="(img, index) in displayedImages" :key="index" class="car_images" :style="{ backgroundImage: `url(${img})` }">
             <svg
               class="remove_img"
               width="40"
@@ -53,7 +54,7 @@
               viewBox="0 0 40 40"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              @click="removeImg(img.index)"
+              @click="removeImg(index)"
             >
               <rect width="40" height="40" rx="20" fill="#DB0000" />
               <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3892 10.4069C10.9055 9.89074 11.7426 9.89085 12.2588 10.4072L19.9504 18.1828L27.7428 10.3876C28.2588 9.87112 29.0959 9.87075 29.6124 10.3868C30.1289 10.9028 30.1293 11.7398 29.6132 12.2563L21.8197 20.0525L29.594 27.7444C30.1102 28.2607 30.1101 29.0978 29.5937 29.614C29.0774 30.1302 28.2404 30.1301 27.7242 29.6137L19.951 21.9229L12.2574 29.6129C11.7413 30.1294 10.9043 30.1298 10.3878 29.6137C9.87134 29.0977 9.87096 28.2607 10.387 27.7442L18.0817 20.0532L10.389 12.2765C9.8728 11.7602 9.8729 10.9231 10.3892 10.4069Z" fill="white" />
