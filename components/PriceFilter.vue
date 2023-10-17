@@ -26,21 +26,21 @@
             <div class="car">
               <img src="~assets/images/new_car.svg" alt="">
               <div class="checkbox_ctn">
-                <input type="checkbox" name="new">
+                <input class="checkbox" type="checkbox" name="new">
                 <p>New</p>
               </div>
             </div>
             <div class="car">
               <img src="~assets/images/old_car.svg" alt="">
               <div class="checkbox_ctn">
-                <input type="checkbox" name="old">
+                <input class="checkbox" type="checkbox" name="old">
                 <p>Old</p>
               </div>
             </div>
             <div class="car">
               <img src="" alt="">
               <div class="checkbox_ctn">
-                <input type="checkbox" name="all">
+                <input class="checkbox" type="checkbox" name="all">
                 <p>All</p>
               </div>
             </div>
@@ -141,6 +141,10 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.checkbox {
+  width: unset;
 }
 
 .checkbox_ctn {
