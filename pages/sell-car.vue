@@ -1,5 +1,5 @@
 <template>
-  <div class="main_ctn">
+  <div class="main_ctn" @click="closeList = true">
     <div class="inner">
       <div class="top_section">
         <div>
@@ -19,7 +19,7 @@
         </div>
         <div class="rhs">
           <div v-if="!carAdded" class="rhs_inner">
-            <SellCarOne v-if="formOne" :save-form="saveFormOne" :car-makes="carMakes" @next="toFormTwo()" />
+            <SellCarOne v-if="formOne" :save-form="saveFormOne" :close-list="closeList" @next="toFormTwo()" />
             <SellCarTwo v-if="formTwo" :save-form="saveFormTwo" @next="toFormThree()" />
             <SellCarThree v-if="formThree" :save-form="saveFormThree" @next="submit" />
             <div class="bottom_section">
@@ -52,7 +52,6 @@
 export default {
   data () {
     return {
-      carMakes: [],
       saveFormOne: false,
       saveFormTwo: false,
       saveFormThree: false,
@@ -63,33 +62,11 @@ export default {
       formTwoCompleted: false,
       formThreeCompleted: false,
       carAdded: false,
-      loading: false
+      loading: false,
+      closeList: false
     }
   },
-  created () {
-    this.getMake()
-  },
   methods: {
-    getMake () {
-      this.$axios.$get('api/make')
-        .then((response) => {
-          console.log(response)
-          this.carMakes = response.docs.data
-        })
-        .catch((_err) => {
-          const errorMsg = _err?.response?.data?.error || _err?.message
-          const feedback = {
-            content:
-              errorMsg || 'Oops, something went wrong, please try again later',
-            state: 'error'
-          }
-          console.log(feedback)
-          this.$toaster.showToast(feedback)
-        })
-        .finally(() => {
-          this.loading = false
-        })
-    },
     submitForm () {
       if (this.formOne) {
         this.saveFormOne = true
