@@ -4,6 +4,7 @@ export const state = () => ({
     make: '',
     model: '',
     year_manufacture: 0,
+    formattedYear: 0,
     condition: '',
     transmission_type: '',
     interior_color: '',
@@ -15,7 +16,9 @@ export const state = () => ({
     email: '',
     phone: ''
   },
-  formProgress: {}
+  formProgress: {},
+  carOneDetails: {},
+  carTwoDetails: {}
 })
 
 export const mutations = {
@@ -46,6 +49,12 @@ export const mutations = {
   },
   setFormProgress (state, val) {
     state.formProgress = val
+  },
+  setCarOneDetails (state, val) {
+    state.carOneDetails = val
+  },
+  setCarTwoDetails (state, val) {
+    state.carTwoDetails = val
   }
 }
 

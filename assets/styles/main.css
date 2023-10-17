@@ -34,6 +34,8 @@ input {
 	border: none;
 	outline: none;
 	height: 50px;
+	width: 100%;
+	cursor: pointer;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -231,12 +233,15 @@ h1 {
 /* datepicker */
 
 .datePicker {
+	cursor: pointer;
 	border-radius: 6px;
 	border: 1px solid var(--primary-color);
 	height: 55px;
 	width: 100%;
 	padding: 0 20px;
 }
+
+
 .come-down {
 	animation: come-down .5s ease-in-out;
 	-webkit-animation: come-down .5s ease-in-out;

@@ -13,36 +13,53 @@
       </div>
       <div v-if="carsSelected" class="cars_ctn">
         <div v-if="!loading" class="car_1">
-          <img :src="carOne.images[0].urls" alt="">
-          <div class="car_content">
-            <p class="car_name">
-              <!-- 2008 Lexus ES 350 -->
-              {{ carOne.yearOfManufacture }} {{ carOne.make }} {{ carOne.model }}
-            </p>
-            <p class="car_amount">
-              {{ carOne.askingPrice }}
-            </p>
-            <p class="change_car">
-              Change Car
-            </p>
+          <div v-if="carOneSelected">
+            <img :src="carOne.images[0].urls" alt="">
+            <div class="car_content">
+              <p class="car_name">
+                <!-- 2008 Lexus ES 350 -->
+                {{ carOne.yearOfManufacture }} {{ carOne.make }} {{ carOne.model }}
+              </p>
+              <p class="car_amount">
+                {{ carOne.askingPrice }}
+              </p>
+              <p class="change_car" @click="$router.push('/compare-cars/select-car')">
+                Change Car
+              </p>
+            </div>
+          </div>
+          <div v-else>
+            <img src="~assets/images/temp_car.png" alt="">
+            <button class="global_btn" @click="$router.push('/compare-cars/select-car')">
+              Select Cars to Compare
+            </button>
           </div>
         </div>
-        <div class="car_1">
-          <img src="~assets/images/second_car.jpg" alt="">
-          <div class="car_content_2">
-            <p class="car_name">
-              2008 Lexus ES 350
-            </p>
-            <p class="car_amount">
-              N4,500,000
-            </p>
-            <p class="change_car">
-              Change Car
-            </p>
+        <div class="car_2">
+          <div v-if="carTwoSelected">
+            <img :src="carTwo.images[0].urls" alt="">
+            <div class="car_content">
+              <p class="car_name">
+                <!-- 2008 Lexus ES 350 -->
+                {{ carTwo.yearOfManufacture }} {{ carTwo.make }} {{ carTwo.model }}
+              </p>
+              <p class="car_amount">
+                {{ carTwo.askingPrice }}
+              </p>
+              <p class="change_car" @click="$router.push('/compare-cars/select-car')">
+                Change Car
+              </p>
+            </div>
+          </div>
+          <div v-else>
+            <img src="~assets/images/temp_car_2.png" alt="">
+            <button class="global_btn" @click="$router.push('/compare-cars/select-car')">
+              Select Cars to Compare with
+            </button>
           </div>
         </div>
       </div>
-      <div v-else>
+      <!-- <div v-else>
         <div class="cars_ctn">
           <div class="car_1">
             <img src="~assets/images/temp_car.png" alt="">
@@ -59,7 +76,7 @@
             Select Car to Compare with
           </button>
         </div>
-      </div>
+      </div> -->
       <div v-if="carsSelected" class="details_ctn">
         <div class="details_inner">
           <p class="details_name">
@@ -155,7 +172,25 @@ export default {
       loading: false
     }
   },
+  computed: {
+    carOneSelected () {
+      if (Object.keys(this.carOne).length) {
+        return true
+      } else {
+        return false
+      }
+    },
+    carTwoSelected () {
+      if (Object.keys(this.carTwo).length) {
+        return true
+      } else {
+        return false
+      }
+    }
+  },
   created () {
+    this.carOne = this.$store.state.carOneDetails
+    this.carTwo = this.$store.state.carTwoDetails
     this.getCarDetails()
   },
   methods: {
@@ -167,9 +202,11 @@ export default {
           console.log(response)
           if (Object.keys(this.carOne).length) {
             this.carTwo = response.docs
+            this.$store.commit('setCarTwoDetails', this.carTwo)
             console.log('Not Working')
           } else {
             this.carOne = response.docs
+            this.$store.commit('setCarOneDetails', this.carOne)
             console.log('Working')
           }
           this.cars = response
@@ -221,7 +258,16 @@ export default {
   flex-basis: 43%;
 }
 
+.car_2 {
+  flex-basis: 43%;
+  text-align: right;
+}
+
 .car_1 img {
+  width: 100%;
+}
+
+.car_2 img {
   width: 100%;
 }
 

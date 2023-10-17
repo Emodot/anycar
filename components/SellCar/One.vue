@@ -5,9 +5,10 @@
         <p class="label">
           Make
         </p>
-        <div class="form_input custom_input_box" @click="showItemList = true">
+        <div class="form_input custom_input_box" @click="showItemList = !showItemList">
           <p>{{ formOne.make }}</p>
-          <span class="material-icons-outlined">
+          <SmallLoader v-if="makeLoading" class="arrow" />
+          <span v-else class="material-icons-outlined">
             expand_more
           </span>
         </div>
@@ -62,7 +63,8 @@
               {{ models.name }}
             </option>
           </select>
-          <span class="material-icons-outlined arrow">
+          <SmallLoader v-if="modelLoading" class="arrow" />
+          <span v-else class="material-icons-outlined arrow">
             expand_more
           </span>
         </div>
@@ -74,13 +76,13 @@
         <div class="form-select">
           <select v-model="formOne.condition">
             <option value="" disabled />
-            <option value="excellent">
+            <option value="new">
               New
             </option>
-            <option value="Foreign Used">
+            <option value="foreignUsed">
               Foreign Used
             </option>
-            <option value="Used">
+            <option value="used">
               Used
             </option>
           </select>
@@ -127,21 +129,25 @@ export default {
       type: Boolean,
       default: () => false
     },
-    carMakes: {
-      type: Array,
-      default: () => []
+    closeList: {
+      type: Boolean,
+      default: () => false
     }
   },
   data () {
     return {
       // customFormatter: 'YYYY',
       showItemList: false,
+      makeLoading: false,
+      modelLoading: false,
+      carMakes: [],
       carModels: [],
       formOne: {
         makeId: 0,
         make: '',
         model: '',
         year_manufacture: 0,
+        formattedYear: 0,
         condition: '',
         transmission_type: ''
       }
@@ -158,6 +164,15 @@ export default {
           this.$emit('next')
         }
       }
+    },
+    closeList: {
+      // immediate: true,
+      handler (val) {
+        console.log(val)
+        if (val) {
+          this.showItemList = false
+        }
+      }
     }
   },
   created () {
@@ -167,9 +182,11 @@ export default {
     this.formOne.makeId = formData.makeId
     this.formOne.model = formData.model
     this.formOne.year_manufacture = formData.year_manufacture
+    this.formOne.formattedYear = formData.formattedYear
     this.formOne.condition = formData.condition
     this.formOne.transmission_type = formData.transmission_type
-    this.getModels(this.formOne.year_manufacture)
+    this.getMake()
+    this.getModels()
   },
   methods: {
     selectMake (data) {
@@ -177,9 +194,34 @@ export default {
       this.formOne.make = data.name
       this.formOne.makeId = data.id
       this.showItemList = false
+      if (this.formOne.formattedYear !== 0) {
+        this.getModels()
+      }
+    },
+    getMake () {
+      this.makeLoading = true
+      this.$axios.$get('api/make')
+        .then((response) => {
+          console.log(response)
+          this.carMakes = response.docs.data
+        })
+        .catch((_err) => {
+          const errorMsg = _err?.response?.data?.error || _err?.message
+          const feedback = {
+            content:
+              errorMsg || 'Oops, something went wrong, please try again later',
+            state: 'error'
+          }
+          console.log(feedback)
+          this.$toaster.showToast(feedback)
+        })
+        .finally(() => {
+          this.makeLoading = false
+        })
     },
     getModels (year) {
-      this.$axios.$get(`api/model?year=${year}&make_id=${this.formOne.makeId}`)
+      this.modelLoading = true
+      this.$axios.$get(`api/model?year=${this.formOne.formattedYear}&make_id=${this.formOne.makeId}`)
         .then((response) => {
           console.log(response)
           this.carModels = response.data.data
@@ -196,7 +238,7 @@ export default {
           this.$toaster.showToast(feedback)
         })
         .finally(() => {
-          this.loading = false
+          this.modelLoading = false
         })
     },
     customFormatter (date) {
@@ -205,10 +247,10 @@ export default {
     getDate (val) {
       // console.log(val)
       const dateString = val
-      const date = new Date(dateString).getFullYear()
+      this.formOne.formattedYear = new Date(dateString).getFullYear()
       // this.formOne.year_manufacture = date
-      console.log(date)
-      this.getModels(date)
+      console.log(this.formOne.formattedYear)
+      this.getModels()
     }
   }
 
