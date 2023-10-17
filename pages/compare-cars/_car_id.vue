@@ -14,7 +14,8 @@
       <div v-if="carsSelected" class="cars_ctn">
         <div v-if="!loading" class="car_1">
           <div v-if="carOneSelected">
-            <img :src="carOne.images[0].urls" alt="">
+            <!-- <img :src="carOne.images[0].urls" alt=""> -->
+            <div class="car_img" :style="{ backgroundImage: `url(${carOne.images[0].urls})` }" />
             <div class="car_content">
               <p class="car_name">
                 <!-- 2008 Lexus ES 350 -->
@@ -37,7 +38,8 @@
         </div>
         <div class="car_2">
           <div v-if="carTwoSelected">
-            <img :src="carTwo.images[0].urls" alt="">
+            <!-- <img :src="carTwo.images[0].urls" alt=""> -->
+            <div class="car_img" :style="{ backgroundImage: `url(${carTwo.images[0].urls})` }" />
             <div class="car_content">
               <p class="car_name">
                 <!-- 2008 Lexus ES 350 -->
@@ -252,6 +254,16 @@ export default {
 .cars_ctn {
   display: flex;
   justify-content: space-between;
+  margin-top: 4rem;
+}
+
+.car_img {
+  width: 100%;
+  height: 25rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 20px;
 }
 
 .car_1 {

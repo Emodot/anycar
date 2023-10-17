@@ -7,7 +7,7 @@
       <p class="sub_title">
         Check the varieties of cars recently updated on our lots
       </p>
-      <div class="add_car_section">
+      <!-- <div class="add_car_section">
         <div class="add_car_btn" @click="$router.push('/compare-cars')">
           <span class="material-icons-outlined">
             add_circle_outline
@@ -26,8 +26,8 @@
             expand_more
           </span>
         </div>
-      </div>
-      <button class="global_btn">
+      </div> -->
+      <button class="global_btn" @click="$router.push('/compare-cars')">
         Compare
       </button>
     </div>
@@ -58,6 +58,7 @@ export default {
 
 .sub_title {
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .add_car_section {

@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar_ctn">
+  <div class="navbar_ctn" :class="{ sticky: isSticky }">
     <div class="navbar_inner">
       <div class="navbar_lhs">
         <div class="logo">
@@ -59,7 +59,23 @@
 export default {
   data () {
     return {
-      productList: {}
+      productList: {},
+      isSticky: false
+    }
+  },
+  mounted () {
+    window.addEventListener('scroll', this.makeHeaderSticky)
+  },
+  beforeDestroy () {
+    window.removeEventListener('scroll', this.makeHeaderSticky)
+  },
+  methods: {
+    makeHeaderSticky () {
+      if (window.scrollY > 0) {
+        this.isSticky = true
+      } else {
+        this.isSticky = false
+      }
     }
   }
   // created () {
@@ -75,6 +91,7 @@ export default {
   position: fixed;
   width: 100%;
   z-index: 5;
+  transition: background-color 0.3s;
 }
 .navbar_inner {
   max-width: 1344px;
@@ -152,6 +169,27 @@ export default {
   font-size: 12px;
   color: white;
   line-height: 19px;
+}
+
+/* Sticky header styles */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  animation: fadeInDown 0.3s;
+  background-color: #ffffff;
+  z-index: 1000;
+}
+
+@keyframes fadeInDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .mobile_menu {

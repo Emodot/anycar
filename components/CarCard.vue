@@ -5,7 +5,7 @@
         <!-- <img :src="card.images[0].urls" alt=""> -->
       </div>
       <p class="card_title">
-        {{ card.make }}
+        {{ card.make }} - {{ card.model }}
       </p>
       <div class="card_details">
         <p class="year">
@@ -15,10 +15,10 @@
         <p class="other_info">
           243 Miles
         </p>
-        <img class="dot" src="~assets/icons/Ellipse_3.svg" alt="">
+        <!-- <img class="dot" src="~assets/icons/Ellipse_3.svg" alt="">
         <p class="other_info">
           {{ card.model }}
-        </p>
+        </p> -->
         <img class="dot" src="~assets/icons/Ellipse_3.svg" alt="">
         <p class="other_info">
           {{ card.engineType }}
