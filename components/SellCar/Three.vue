@@ -19,6 +19,21 @@
         </p>
         <input v-model="formThree.email" class="form_input" type="email">
       </div>
+
+      <div class="input_flex">
+        <div class="input_flex_item">
+          <p class="label">
+            Inspection Date
+          </p>
+          <input v-model="formThree.inspectionDate" class="form_input" type="date">
+        </div>
+        <div class="input_flex_item">
+          <p class="label">
+            Inspection Time
+          </p>
+          <input v-model="formThree.inspectionTime" class="form_input" type="time">
+        </div>
+      </div>
       <div class="input_ctn">
         <p class="label">
           Kindly Upload Image(s) of the car
@@ -31,8 +46,7 @@
               class="select-image"
               type="file"
               name="image"
-              accept="image/jpeg, image/png"
-              multiple
+              accept="image/jpeg, image/png, image/webp"
               @input="selectImgFile"
             >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -79,7 +93,9 @@ export default {
       formThree: {
         name: '',
         email: '',
-        phone: ''
+        phone: '',
+        inspectionDate: '',
+        inspectionTime: ''
         // images: []
       },
       selectedImages: [],
@@ -104,6 +120,8 @@ export default {
     this.formThree.name = formData.name
     this.formThree.phone = formData.phone
     this.formThree.email = formData.email
+    this.formThree.inspectionDate = formData.inspectionDate
+    this.formThree.inspectionTime = formData.inspectionTime
     // this.formThree.images = formData.images
     // this.displayedImages = formData.displayedImages
   },

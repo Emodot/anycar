@@ -264,6 +264,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 20px;
+  margin-bottom: 1rem;
 }
 
 .car_1 {

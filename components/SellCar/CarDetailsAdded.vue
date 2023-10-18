@@ -14,13 +14,13 @@
           <img src="~assets/icons/success.gif" alt="">
         </div>
         <p class="modal_text">
-          Your inspection has been scheduled successfully for 4th September 2023 for 6pm, more details has been sent to your email someone from our support team will contact you
+          Your inspection has been scheduled successfully for {{ dateTime.date }} for {{ formatTime(dateTime.time) }}, more details has been sent to your email someone from our support team will contact you
         </p>
         <div class="bottom_btn">
-          <button class="global_btn compare_btn">
+          <!-- <button class="global_btn compare_btn">
             My Dashboard
-          </button>
-          <button class="global_btn" @click="$emit('requestInspection')">
+          </button> -->
+          <button class="global_btn" @click="$router.push('/')">
             Ok, Go Home
           </button>
         </div>

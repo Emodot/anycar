@@ -1,12 +1,12 @@
 <template>
   <div class="details">
     <div class="lhs">
-      <div class="main_image" :style="{ backgroundImage: `url(${data.images[0].urls})` }">
+      <div class="main_image" :style="{ backgroundImage: `url(${mainImage})` }">
         <!-- <img src="~assets/images/car-2.jpg" alt=""> -->
       </div>
       <div class="other_images">
         <div v-for="image in data.images" :key="image.index" class="inner_images">
-          <div :style="{ backgroundImage: `url(${image.urls})` }" />
+          <div :style="{ backgroundImage: `url(${image.urls})` }" @click="changeMainImg(image)" />
           <!-- <img src="~assets/images/car.jpg" alt=""> -->
         </div>
       </div>
@@ -99,6 +99,19 @@ export default {
       type: Object,
       default: () => {}
     }
+  },
+  data () {
+    return {
+      mainImage: ''
+    }
+  },
+  created () {
+    this.mainImage = this.data.images[0].urls
+  },
+  methods: {
+    changeMainImg (val) {
+      this.mainImage = val.urls
+    }
   }
 }
 </script>
@@ -145,6 +158,7 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  cursor: pointer;
 }
 
 .rhs {

@@ -41,7 +41,7 @@
               </div>
             </div>
           </div>
-          <SellCarDetailsAdded v-else />
+          <SellCarDetailsAdded v-else :date-time="dateTime" />
         </div>
       </div>
     </div>
@@ -63,6 +63,7 @@ export default {
       formThreeCompleted: false,
       carAdded: false,
       loading: false,
+      dateTime: {},
       closeList: false
     }
   },
@@ -99,6 +100,12 @@ export default {
       const carImages = data
       console.log(carImages)
       const formattedYear = new Date(form.year_manufacture).getFullYear()
+      const convertedDate = new Date(form.inspectionDate)
+      const displayDate = new Date(this.proposedInspectionDate).toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' })
+      this.dateTime = {
+        date: displayDate,
+        time: this.proposedInspectionTime
+      }
       const formdata = new FormData()
       formdata.append('make', form.make)
       formdata.append('model', form.model)
@@ -116,15 +123,19 @@ export default {
       }
       formdata.append('email', form.email)
       formdata.append('askingPrice', form.asking_price)
+      formdata.append('proposedInspectionDate', convertedDate)
+      formdata.append('proposedInspectionTime', form.inspectionTime)
       console.log(formdata)
       await this.$axios.$post('api/sell', formdata)
         .then((response) => {
           console.log(response)
           this.carAdded = true
           const clearedForm = {
+            makeId: 0,
             make: '',
             model: '',
             year_manufacture: 0,
+            formattedYear: 0,
             condition: '',
             transmission_type: '',
             interior_color: '',
@@ -134,7 +145,9 @@ export default {
             asking_price: '',
             name: '',
             email: '',
-            phone: ''
+            phone: '',
+            inspectionDate: '',
+            inspectionTime: ''
           }
           this.$store.commit('setSellCarForm', clearedForm)
           this.$toaster.showToast({

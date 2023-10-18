@@ -17,9 +17,9 @@
           Your inspection has been scheduled successfully for {{ dateTime.date }} for {{ formatTime(dateTime.time) }}, more details has been sent to your email someone from our support team will contact you
         </p>
         <div class="bottom_btn">
-          <button class="global_btn compare_btn">
+          <!-- <button class="global_btn compare_btn">
             My Dashboard
-          </button>
+          </button> -->
           <button class="global_btn" @click="$emit('close-modal')">
             Ok, Close
           </button>
