@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="rhs">
-      <h2>{{ data.make }}</h2>
+      <h2>{{ data.make }} {{ data.model }}</h2>
       <div class="car_options">
         <div class="option">
           <p>{{ data.yearOfManufacture }}</p>
@@ -76,7 +76,7 @@
             Asking Price
           </p>
           <p class="table_value">
-            {{ data.askingPrice }}
+            {{ currency(data.askingPrice, 'NGN') }}
           </p>
         </div>
         <div class="table_btn">
@@ -93,6 +93,7 @@
 </template>
 
 <script>
+import functions from '@/utils/functions'
 export default {
   props: {
     data: {
@@ -102,6 +103,7 @@ export default {
   },
   data () {
     return {
+      currency: functions.formatCurrency,
       mainImage: ''
     }
   },

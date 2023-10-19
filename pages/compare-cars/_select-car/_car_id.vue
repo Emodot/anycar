@@ -22,7 +22,7 @@
                 {{ carOne.yearOfManufacture }} {{ carOne.make }} {{ carOne.model }}
               </p>
               <p class="car_amount">
-                {{ carOne.askingPrice }}
+                {{ currency(carOne.askingPrice, 'NGN') }}
               </p>
               <p class="change_car" @click="$router.push('/compare-cars/select-car')">
                 Change Car
@@ -46,7 +46,7 @@
                 {{ carTwo.yearOfManufacture }} {{ carTwo.make }} {{ carTwo.model }}
               </p>
               <p class="car_amount">
-                {{ carTwo.askingPrice }}
+                {{ currency(carTwo.askingPrice, 'NGN') }}
               </p>
               <p class="change_car" @click="$router.push('/compare-cars/select-car')">
                 Change Car
@@ -165,9 +165,11 @@
 </template>
 
 <script>
+import functions from '@/utils/functions'
 export default {
   data () {
     return {
+      currency: functions.formatCurrency,
       carOne: {},
       carTwo: {},
       carsSelected: true,
