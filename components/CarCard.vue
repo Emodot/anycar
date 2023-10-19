@@ -5,32 +5,32 @@
         <!-- <img :src="card.images[0].urls" alt=""> -->
       </div>
       <p class="card_title">
-        {{ card.make }} - {{ card.model }}
+        {{ capitalizeFirstLetter(card.make) }} - {{ capitalizeFirstLetter(card.model) }}
       </p>
       <div class="card_details">
         <p class="year">
           {{ card.yearOfManufacture }}
         </p>
-        <img class="dot" src="~assets/icons/Ellipse_3.svg" alt="">
-        <p class="other_info">
-          243 Miles
-        </p>
         <!-- <img class="dot" src="~assets/icons/Ellipse_3.svg" alt="">
         <p class="other_info">
-          {{ card.model }}
+          243 Miles
         </p> -->
         <img class="dot" src="~assets/icons/Ellipse_3.svg" alt="">
         <p class="other_info">
           {{ card.engineType }}
         </p>
+        <!-- <img class="dot" src="~assets/icons/Ellipse_3.svg" alt="">
+        <p class="other_info">
+          {{ capitalizeFirstLetter(card.condition) }}
+        </p> -->
       </div>
       <div class="bottom_section">
         <div class="card_amount">
-          <p>₦ {{ card.askingPrice }}</p>
+          <p>{{ currency(card.askingPrice, 'NGN') }}</p>
         </div>
         <div class="card_type">
           <!-- <p>{{ card.condition }}</p> -->
-          <p>New</p>
+          <p>{{ capitalizeFirstLetter(card.condition) }}</p>
         </div>
       </div>
     </div>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import functions from '@/utils/functions'
 export default {
   props: {
     cardDetails: {
@@ -47,6 +48,12 @@ export default {
     imgHeight: {
       type: Number,
       default: () => 14
+    }
+  },
+  data () {
+    return {
+      currency: functions.formatCurrency,
+      capitalizeFirstLetter: functions.capitalizeFirstLetter
     }
   },
   methods: {

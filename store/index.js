@@ -14,7 +14,9 @@ export const state = () => ({
     asking_price: '',
     name: '',
     email: '',
-    phone: ''
+    phone: '',
+    inspectionDate: '',
+    inspectionTime: ''
   },
   formProgress: {},
   carOneDetails: {},
