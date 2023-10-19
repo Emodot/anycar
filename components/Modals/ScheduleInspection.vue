@@ -133,7 +133,7 @@ export default {
 
 <style scoped>
 .modal-backdrop {
-  z-index: 7;
+  z-index: 50;
   position: fixed;
   overflow: auto;
   height: 100%;

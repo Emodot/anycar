@@ -77,6 +77,14 @@ h1 {
 	margin-bottom: 10px;
 }
 
+.v-money {
+	border-radius: 6px;
+	border: 1px solid var(--primary-color);
+	height: 55px;
+	width: 100%;
+	padding: 0 20px;
+}
+
 .form_input {
 	border-radius: 6px;
 	border: 1px solid var(--primary-color);

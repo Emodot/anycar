@@ -2,7 +2,12 @@ import Vue from 'vue'
 
 import Toasted from 'vue-toasted'
 
-const options = {
+// Toasted = require("vue-toasted").default;
+
+// Vue.use(Toasted)
+
+const Options = {
+  type: 'error',
   duration: 3000,
   keepOnHover: true,
   action: {
@@ -13,6 +18,7 @@ const options = {
   }
 }
 
-if (process.browser) {
-  Vue.use(Toasted, options)
-}
+Vue.use(Toasted, Options)
+// if (process.browser) {
+//   Vue.use(Toasted, options)
+// }
