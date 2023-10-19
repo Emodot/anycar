@@ -245,7 +245,8 @@ export default {
       return moment(date).format('YYYY')
     },
     getDate (val) {
-      // console.log(val)
+      console.log(val)
+      this.formOne.year_manufacture = val
       const dateString = val
       this.formOne.formattedYear = new Date(dateString).getFullYear()
       // this.formOne.year_manufacture = date

@@ -63,7 +63,10 @@ export default {
       formThreeCompleted: false,
       carAdded: false,
       loading: false,
-      dateTime: {},
+      dateTime: {
+        date: '',
+        time: ''
+      },
       closeList: false
     }
   },
@@ -101,11 +104,9 @@ export default {
       console.log(carImages)
       const formattedYear = new Date(form.year_manufacture).getFullYear()
       const convertedDate = new Date(form.inspectionDate)
-      const displayDate = new Date(this.proposedInspectionDate).toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' })
-      this.dateTime = {
-        date: displayDate,
-        time: this.proposedInspectionTime
-      }
+      // const displayDate = new Date(this.proposedInspectionDate).toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' })
+      this.dateTime.date = this.proposedInspectionDate
+      this.dateTime.time = this.proposedInspectionTime
       const formdata = new FormData()
       formdata.append('make', form.make)
       formdata.append('model', form.model)
@@ -150,12 +151,14 @@ export default {
             inspectionTime: ''
           }
           this.$store.commit('setSellCarForm', clearedForm)
+          this.$toasted.show(response.data?.message || 'Car Listing created successfully')
           this.$toaster.showToast({
             content: response.data?.message || 'Car Listing created successfully',
             state: 'success'
           })
         })
         .catch((_err) => {
+          this.saveFormThree = false
           const errorMsg = _err?.response?.data?.error || _err?.message
           const feedback = {
             content:

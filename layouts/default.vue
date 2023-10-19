@@ -1,5 +1,6 @@
 <template>
   <div class="main">
+    <OurToast />
     <Navbar
       @open-cart="openCart = true"
       @showMobileMenu="showMobileMenu = true"

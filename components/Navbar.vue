@@ -178,7 +178,7 @@ export default {
   width: 100%;
   animation: fadeInDown 0.3s;
   background-color: #ffffff;
-  z-index: 1000;
+  z-index: 20;
 }
 
 @keyframes fadeInDown {

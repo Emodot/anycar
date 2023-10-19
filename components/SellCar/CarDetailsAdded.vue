@@ -14,7 +14,7 @@
           <img src="~assets/icons/success.gif" alt="">
         </div>
         <p class="modal_text">
-          Your inspection has been scheduled successfully for {{ dateTime.date }} for {{ formatTime(dateTime.time) }}, more details has been sent to your email someone from our support team will contact you
+          Your inspection has been scheduled successfully for {{ formatDate(dateTime.date) }} for {{ formatTime(dateTime.time) }}, more details has been sent to your email someone from our support team will contact you
         </p>
         <div class="bottom_btn">
           <!-- <button class="global_btn compare_btn">
@@ -47,6 +47,17 @@ export default {
   //   }
   // },
   methods: {
+    formatDate (date) {
+      const newDate = new Date(date).toLocaleDateString('en-us',
+        {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        }
+      )
+      return newDate
+    },
     formatTime (date) {
       let hours = date.getHours()
       let minutes = date.getMinutes()

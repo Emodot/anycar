@@ -45,14 +45,17 @@
         <p class="label">
           Asking Price
         </p>
-        <input v-model="formTwo.asking_price" class="form_input" type="number">
+        <money v-model="formTwo.asking_price" v-bind="money" />
+        <!-- <input v-model="formTwo.asking_price" class="form_input" type="number"> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { Money } from 'v-money'
 export default {
+  components: { Money },
   props: {
     saveForm: {
       type: Boolean,
@@ -61,6 +64,14 @@ export default {
   },
   data () {
     return {
+      money: {
+        decimal: '.',
+        thousands: ',',
+        prefix: '₦ ',
+        suffix: '',
+        precision: 2,
+        masked: false
+      },
       formTwo: {
         interior_color: '',
         exterior_color: '',
@@ -74,7 +85,7 @@ export default {
     saveForm: {
       immediate: true,
       handler (val) {
-        // console.log(val)
+        // console.log(this.formTwo.asking_price)
         if (val) {
           this.$store.dispatch('setSellCarForm', this.formTwo)
           this.$emit('next')
