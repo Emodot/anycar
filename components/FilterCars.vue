@@ -105,7 +105,10 @@
     </div>
     <div class="rhs">
       <div class="product_list_ctn">
-        <CarCard :card-details="data.docs" :img-height="11" />
+        <CarCard v-if="!loading" :card-details="data.docs" :img-height="11" />
+        <div v-else class="page_loader_ctn">
+          <PageLoader />
+        </div>
       </div>
       <Pagination :pagination-data="data" @changePage="change" />
     </div>
@@ -118,6 +121,10 @@ export default {
     data: {
       type: Object,
       default: () => {}
+    },
+    loading: {
+      type: Boolean,
+      default: () => false
     }
   },
   data () {
@@ -398,6 +405,14 @@ input {
   color: #150a41bd;
   font-size: 16px;
   cursor: pointer;
+}
+
+.page_loader_ctn {
+  height: 60vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media only screen and (max-width: 1300px) {
