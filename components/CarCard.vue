@@ -52,14 +52,35 @@ export default {
   },
   data () {
     return {
+      firstCarId: '',
       currency: functions.formatCurrency,
       capitalizeFirstLetter: functions.capitalizeFirstLetter
     }
   },
+  created () {
+    console.log(this.$route)
+  },
   methods: {
     selectProduct (card) {
       if (this.$route.name === 'compare-cars-select-car') {
-        this.$router.push(`/compare-cars/${card._id}`)
+        // this.$router.push(`/compare-cars/?firstCar=${card._id}`)
+        if (this.$route.query.firstCar === null) {
+          this.firstCarId = card._id
+          this.$router.push({
+            name: 'compare-cars-car_id',
+            query: {
+              firstCar: card._id
+            }
+          })
+        } else if (this.$route.query.secondCar === null) {
+          this.$router.push({
+            name: 'compare-cars-car_id',
+            query: {
+              firstCar: this.$route.query.firstCar,
+              secondCar: card._id
+            }
+          })
+        }
       } else {
         this.$router.push(`/buy-car/${card._id}`)
       }
