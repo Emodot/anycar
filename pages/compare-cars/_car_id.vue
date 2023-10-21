@@ -27,9 +27,9 @@
               <p class="car_amount">
                 {{ currency(carOne.askingPrice, 'NGN') }}
               </p>
-              <p class="change_car" @click="$router.push('/compare-cars/select-car')">
+              <!-- <p class="change_car" @click="$router.push('/compare-cars/select-car')">
                 Change Car
-              </p>
+              </p> -->
             </div>
           </div>
           <div v-else>
@@ -51,9 +51,9 @@
               <p class="car_amount">
                 {{ currency(carTwo.askingPrice, 'NGN') }}
               </p>
-              <p class="change_car" @click="$router.push('/compare-cars/select-car')">
+              <!-- <p class="change_car" @click="$router.push('/compare-cars/select-car')">
                 Change Car
-              </p>
+              </p> -->
             </div>
           </div>
           <div v-else>
@@ -82,7 +82,7 @@
           </button>
         </div>
       </div> -->
-      <div v-if="carsSelected" class="details_ctn">
+      <div v-if="carOneSelected && carTwoSelected" class="details_ctn">
         <div class="details_inner">
           <p class="details_name">
             {{ carOne.engineType }}
@@ -97,37 +97,37 @@
         <hr class="details_line">
         <div class="details_inner">
           <p class="details_name">
-            {{ carOne.transmissionType }}
+            {{ capitalizeFirstLetter(carOne.transmissionType) }}
           </p>
           <p class="details_value">
             Transmission
           </p>
           <p class="details_name">
-            {{ carTwo.transmissionType }}
+            {{ capitalizeFirstLetter(carTwo.transmissionType) }}
           </p>
         </div>
         <hr class="details_line">
         <div class="details_inner">
           <p class="details_name">
-            {{ carOne.interiorColor }}
+            {{ capitalizeFirstLetter(carOne.interiorColor) }}
           </p>
           <p class="details_value">
             Interior Color
           </p>
           <p class="details_name">
-            {{ carTwo.interiorColor }}
+            {{ capitalizeFirstLetter(carTwo.interiorColor) }}
           </p>
         </div>
         <hr class="details_line">
         <div class="details_inner">
           <p class="details_name">
-            {{ carOne.exteriorColor }}
+            {{ capitalizeFirstLetter(carOne.exteriorColor) }}
           </p>
           <p class="details_value">
             Exterior Color
           </p>
           <p class="details_name">
-            {{ carTwo.exteriorColor }}
+            {{ capitalizeFirstLetter(carTwo.exteriorColor) }}
           </p>
         </div>
         <hr class="details_line">
@@ -176,6 +176,7 @@ export default {
     return {
       carId: '',
       currency: functions.formatCurrency,
+      capitalizeFirstLetter: functions.capitalizeFirstLetter,
       carOne: {},
       carTwo: {},
       carsSelected: true,
