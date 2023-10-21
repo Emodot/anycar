@@ -153,7 +153,6 @@ export default {
             inspectionTime: ''
           }
           this.$store.commit('setSellCarForm', clearedForm)
-          this.$toasted.show(response.data?.message || 'Car Listing created successfully')
           this.$toaster.showToast({
             content: response.data?.message || 'Car Listing created successfully',
             state: 'success'
