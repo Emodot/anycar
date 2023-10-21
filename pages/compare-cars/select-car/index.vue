@@ -17,6 +17,7 @@
       <div class="content">
         <FilterCars
           :data="cars"
+          :loading="getCarsLoading"
           @changePage="changePage"
           @filterMake="filterMake"
           @filterYear="filterYear"
@@ -39,7 +40,8 @@ export default {
       year: '',
       maxPrice: '',
       maxMileage: '',
-      type: ''
+      type: '',
+      getCarsLoading: false
     }
   },
   created () {
@@ -121,7 +123,8 @@ export default {
       maxMileage,
       type
     ) {
-      console.log(type)
+      // console.log(type)
+      this.getCarsLoading = true
       this.$axios.$get(`api/sell?pageNumber=${currentPage}&pageSize=9&make=${make}&year=${year}&maxPrice=${maxPrice}&maxMileage=${maxMileage}&type=${type}`)
         .then((response) => {
           console.log(response)
@@ -138,7 +141,7 @@ export default {
           this.$toaster.showToast(feedback)
         })
         .finally(() => {
-          this.loading = false
+          this.getCarsLoading = false
         })
     }
   }
