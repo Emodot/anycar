@@ -105,8 +105,10 @@ export default {
       const formattedYear = new Date(form.year_manufacture).getFullYear()
       const convertedDate = new Date(form.inspectionDate)
       // const displayDate = new Date(this.proposedInspectionDate).toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' })
-      this.dateTime.date = this.proposedInspectionDate
-      this.dateTime.time = this.proposedInspectionTime
+      this.dateTime.date = form.inspectionDate
+      this.dateTime.time = form.inspectionTime
+      console.log(this.dateTime)
+      // console.log(form.inspectionDate)
       const formdata = new FormData()
       formdata.append('make', form.make)
       formdata.append('model', form.model)

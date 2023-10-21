@@ -104,11 +104,14 @@
       </div>
     </div>
     <div class="rhs">
-      <div class="product_list_ctn">
-        <CarCard v-if="!loading" :card-details="data.docs" :img-height="11" />
-        <div v-else class="page_loader_ctn">
-          <PageLoader />
+      <div v-if="!loading" class="product_list_ctn">
+        <CarCard v-if="data.docs.length" :card-details="data.docs" :img-height="11" />
+        <div v-else class="empty_state_ctn">
+          <p>No Cars available</p>
         </div>
+      </div>
+      <div v-else class="page_loader_ctn">
+        <PageLoader />
       </div>
       <Pagination :pagination-data="data" @changePage="change" />
     </div>
@@ -413,6 +416,20 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.empty_state_ctn {
+  height: 40vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty_state_ctn p {
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--primary-color);
 }
 
 @media only screen and (max-width: 1300px) {
