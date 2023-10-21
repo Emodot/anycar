@@ -10,6 +10,9 @@
             Make Better decisions before purchase while you compare side by side cars available in our lots
           </p>
         </div>
+        <p class="clear_cars" @click="clearCars()">
+          Clear Cars
+        </p>
       </div>
       <div v-if="carsSelected" class="cars_ctn">
         <div v-if="!loading" class="car_1">
@@ -31,7 +34,7 @@
           </div>
           <div v-else>
             <img src="~assets/images/temp_car.png" alt="">
-            <button class="global_btn" @click="$router.push('/compare-cars/select-car')">
+            <button class="global_btn" @click="$router.push('/compare-cars/select-car?firstCar')">
               Select Cars to Compare
             </button>
           </div>
@@ -55,7 +58,7 @@
           </div>
           <div v-else>
             <img src="~assets/images/temp_car_2.png" alt="">
-            <button class="global_btn" @click="$router.push('/compare-cars/select-car')">
+            <button class="global_btn" @click="$router.push(`/compare-cars/select-car?firstCar=${$route.query.firstCar}&secondCar`)">
               Select Cars to Compare with
             </button>
           </div>
@@ -82,85 +85,87 @@
       <div v-if="carsSelected" class="details_ctn">
         <div class="details_inner">
           <p class="details_name">
-            4 - Cylinder
+            {{ carOne.engineType }}
           </p>
           <p class="details_value">
             Engine
           </p>
           <p class="details_name">
-            4 - Cylinder
+            {{ carTwo.engineType }}
           </p>
         </div>
         <hr class="details_line">
         <div class="details_inner">
           <p class="details_name">
-            Automatic
+            {{ carOne.transmissionType }}
           </p>
           <p class="details_value">
             Transmission
           </p>
           <p class="details_name">
-            Automatic
+            {{ carTwo.transmissionType }}
           </p>
         </div>
         <hr class="details_line">
         <div class="details_inner">
           <p class="details_name">
-            Black
+            {{ carOne.interiorColor }}
           </p>
           <p class="details_value">
             Interior Color
           </p>
           <p class="details_name">
-            Black
+            {{ carTwo.interiorColor }}
           </p>
         </div>
         <hr class="details_line">
         <div class="details_inner">
           <p class="details_name">
-            Grey
+            {{ carOne.exteriorColor }}
           </p>
           <p class="details_value">
             Exterior Color
           </p>
           <p class="details_name">
-            Grey
+            {{ carTwo.exteriorColor }}
           </p>
         </div>
         <hr class="details_line">
         <div class="details_inner">
           <p class="details_name">
-            JTNB ******************
+            {{ carOne.vin }}
           </p>
           <p class="details_value">
             VIN
           </p>
           <p class="details_name">
-            JTNB ******************
+            {{ carTwo.vin }}
           </p>
         </div>
         <hr class="details_line">
         <div class="details_inner">
           <p class="details_name">
-            N13,500,000
+            {{ currency(carOne.askingPrice) }}
           </p>
           <p class="details_value">
             Asking Price
           </p>
           <p class="details_name">
-            N13,500,000
+            {{ currency(carTwo.askingPrice) }}
           </p>
         </div>
         <div class="details_btn_ctn">
-          <button class="global_btn_2">
+          <button class="global_btn_2" @click="scheduleInspection(carOne._id)">
             Request Inspection
           </button>
-          <button class="global_btn_2">
+          <button class="global_btn_2" @click="scheduleInspection(carTwo._id)">
             Request Inspection
           </button>
         </div>
       </div>
     </div>
+    <ModalsScheduleInspection v-if="inspectionForm" :car-id="carId" @close-modal="inspectionForm = false" @scheduleCompleted="scheduleCompleted" />
+    <ModalsSuccess v-if="successModal" :date-time="dateTime" @close-modal="successModal = false" />
   </div>
 </template>
 
@@ -169,11 +174,14 @@ import functions from '@/utils/functions'
 export default {
   data () {
     return {
+      carId: '',
       currency: functions.formatCurrency,
       carOne: {},
       carTwo: {},
       carsSelected: true,
-      loading: false
+      loading: false,
+      inspectionForm: false,
+      successModal: false
     }
   },
   computed: {
@@ -193,26 +201,75 @@ export default {
     }
   },
   created () {
-    this.carOne = this.$store.state.carOneDetails
-    this.carTwo = this.$store.state.carTwoDetails
-    this.getCarDetails()
+    // this.carOne = this.$store.state.carOneDetails
+    // this.carTwo = this.$store.state.carTwoDetails
+    this.getFirstCarDetails()
+    this.getSecCarDetails()
   },
   methods: {
-    getCarDetails () {
+    scheduleInspection (val) {
+      this.carId = val
+      this.inspectionForm = true
+    },
+    clearCars () {
+      this.$store.commit('setCarOneDetails', {})
+      this.$store.commit('setCarTwoDetails', {})
+      this.$router.push('/compare-cars')
+      // window.location.reload()
+      this.carOne = {}
+      this.carTwo = {}
+    },
+    getFirstCarDetails () {
       this.loading = true
-      const carId = this.$route.params.car_id
+      const carId = this.$route.query.firstCar
       this.$axios.$get(`api/sell/${carId}`)
         .then((response) => {
-          console.log(response)
-          if (Object.keys(this.carOne).length) {
-            this.carTwo = response.docs
-            this.$store.commit('setCarTwoDetails', this.carTwo)
-            console.log('Not Working')
-          } else {
-            this.carOne = response.docs
-            this.$store.commit('setCarOneDetails', this.carOne)
-            console.log('Working')
+          this.carOne = response.docs
+          // this.$store.commit('setCarOneDetails', this.carOne)
+          // console.log(response)
+          // if (Object.keys(this.carOne).length) {
+          //   this.carTwo = response.docs
+          //   this.$store.commit('setCarTwoDetails', this.carTwo)
+          //   console.log('Not Working')
+          // } else {
+          //   this.carOne = response.docs
+          //   this.$store.commit('setCarOneDetails', this.carOne)
+          //   console.log('Working')
+          // }
+          this.cars = response
+        })
+        .catch((_err) => {
+          const errorMsg = _err?.response?.data?.error || _err?.message
+          const feedback = {
+            content:
+              errorMsg || 'Oops, something went wrong, please try again later',
+            state: 'error'
           }
+          console.log(feedback)
+          // this.$toaster.showToast(feedback)
+        })
+        .finally(() => {
+          this.loading = false
+        })
+    },
+    getSecCarDetails () {
+      this.loading = true
+      const carId = this.$route.query.secondCar
+      this.$axios.$get(`api/sell/${carId}`)
+        .then((response) => {
+          this.carTwo = response.docs
+          console.log(this.carTwo)
+          // this.$store.commit('setCarTwoDetails', this.carTwo)
+          // console.log(response)
+          // if (Object.keys(this.carOne).length) {
+          //   this.carTwo = response.docs
+          //   this.$store.commit('setCarTwoDetails', this.carTwo)
+          //   console.log('Not Working')
+          // } else {
+          //   this.carOne = response.docs
+          //   this.$store.commit('setCarOneDetails', this.carOne)
+          //   console.log('Working')
+          // }
           this.cars = response
         })
         .catch((_err) => {
@@ -246,7 +303,15 @@ export default {
 .top_section {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   /* padding: 20px 0 40px; */
+}
+
+.clear_cars {
+  color: red;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .title {
